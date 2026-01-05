@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Tinte Permanente Augeas",
+    "price": 12.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691629521bb32_17.png",
+    "description": "Coloración profesional Kera-repair. Cobertura total y brillo intenso.",
+    "variants": [
+      "9/00 Rubio Muy Claro Intenso",
+      "11/3 Rubio Ultra Dorado",
+      "11/00 Ultra Rubio",
+      "9/11 Rubio Ceniza Muy Claro Intenso",
+      "11/31 Rubio Ceniza Ultra Dorado",
+      "11/0 Rubio Más Claro",
+      "9/81 Rubio Ceniza Muy Claro",
+      "11/11 Rubio Ceniza Intenso más Claro",
+      "11/1 Ultra Rubio Ceniza",
+      "8/81 Rubio Claro Azul Ceniza",
+      "9/1 Rubio Ceniza muy Claro"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Shampoo Tinte 3 en 1 (Individual)",
+    "price": 12.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691628a9d46ec_7.png",
+    "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
+    "variants": [
+      "Black (Negro Intenso)",
+      "Coffee (Castaño Medio)",
+      "Dark Wine Red (Rojo Borgoña)",
+      "Dark Brown (Castaño Oscuro)",
+      "Golden Brown (Marrón Dorado)",
+      "Wine Red (Rojo Vino)",
+      "Chestnut Brown (Marrón Avellana)",
+      "Dark Chocolate (Castaño Chocolate)",
+      "Black Tea (Negro Castaño)",
+      "Black Coconut (Negro Natural)"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Combo Reparador",
+    "price": 30.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691737ff6e171_28.png",
+    "description": "Rutina completa de reparación. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla Aceite de Argán + 1 Protector Térmico.",
+    "variants": [
+      "Black (Negro Intenso)",
+      "Coffee (Castaño Medio)",
+      "Dark Wine Red (Rojo Borgoña)",
+      "Dark Brown (Castaño Oscuro)",
+      "Golden Brown (Marrón Dorado)",
+      "Wine Red (Rojo Vino)",
+      "Chestnut Brown (Marrón Avellana)",
+      "Dark Chocolate (Castaño Chocolate)",
+      "Black Tea (Negro Castaño)",
+      "Black Coconut (Negro Natural)"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Combo Suavizante",
+    "price": 30.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6917380d81ba7_29.png",
+    "description": "Suavidad extrema. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla de Keratina + 1 Protector Térmico.",
+    "variants": [
+      "Black (Negro Intenso)",
+      "Coffee (Castaño Medio)",
+      "Dark Wine Red (Rojo Borgoña)",
+      "Dark Brown (Castaño Oscuro)",
+      "Golden Brown (Marrón Dorado)",
+      "Wine Red (Rojo Vino)",
+      "Chestnut Brown (Marrón Avellana)",
+      "Dark Chocolate (Castaño Chocolate)",
+      "Black Tea (Negro Castaño)",
+      "Black Coconut (Negro Natural)"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Combo Máximo Color",
+    "price": 30.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6917381fa6145_30.png",
+    "description": "Protección de color y cero frizz. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla Chao Frizz + 1 Protector Térmico.",
+    "variants": [
+      "Black (Negro Intenso)",
+      "Coffee (Castaño Medio)",
+      "Dark Wine Red (Rojo Borgoña)",
+      "Dark Brown (Castaño Oscuro)",
+      "Golden Brown (Marrón Dorado)",
+      "Wine Red (Rojo Vino)",
+      "Chestnut Brown (Marrón Avellana)",
+      "Dark Chocolate (Castaño Chocolate)",
+      "Black Tea (Negro Castaño)",
+      "Black Coconut (Negro Natural)"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Shampoo Tea Tree Oil (Control Caspa)",
+    "price": 18.00,
+    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6916291e38a30_13.png",
+    "description": "LovelyCSM. Fórmula libre de sulfatos y parabenos. Ideal para cabello con caspa, teñido o maltratado. (500ml)."
+  }
+]
