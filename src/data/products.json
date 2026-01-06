@@ -2,104 +2,269 @@
   {
     "id": 1,
     "name": "Tinte Permanente Augeas",
-    "price": 12.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691629521bb32_17.png",
     "description": "Coloración profesional Kera-repair. Cobertura total y brillo intenso.",
-    "variants": [
-      "9/00 Rubio Muy Claro Intenso",
-      "11/3 Rubio Ultra Dorado",
-      "11/00 Ultra Rubio",
-      "9/11 Rubio Ceniza Muy Claro Intenso",
-      "11/31 Rubio Ceniza Ultra Dorado",
-      "11/0 Rubio Más Claro",
-      "9/81 Rubio Ceniza Muy Claro",
-      "11/11 Rubio Ceniza Intenso más Claro",
-      "11/1 Ultra Rubio Ceniza",
-      "8/81 Rubio Claro Azul Ceniza",
-      "9/1 Rubio Ceniza muy Claro"
+    "price": 12.00,
+    "category": "Tintes",
+    "image": "/images/tinte-9-00.png",
+    "colors": [
+      {
+        "name": "9/00 Rubio Muy Claro Intenso",
+        "image": "/images/tinte-9-00.png"
+      },
+      {
+        "name": "11/3 Rubio Ultra Dorado",
+        "image": "/images/tinte-11-3.png"
+      },
+      {
+        "name": "11/00 Ultra Rubio",
+        "image": "/images/tinte-11-00.png"
+      },
+      {
+        "name": "9/11 Rubio Ceniza Muy Claro Intenso",
+        "image": "/images/tinte-9-11.png"
+      },
+      {
+        "name": "11/31 Rubio Ceniza Ultra Dorado",
+        "image": "/images/tinte-11-31.png"
+      },
+      {
+        "name": "11/0 Rubio Más Claro",
+        "image": "/images/tinte-11-0.png"
+      },
+      {
+        "name": "9/81 Rubio Ceniza Muy Claro",
+        "image": "/images/tinte-9-81.png"
+      },
+      {
+        "name": "11/11 Rubio Ceniza Intenso más Claro",
+        "image": "/images/tinte-11-11.png"
+      },
+      {
+        "name": "11/1 Ultra Rubio Ceniza",
+        "image": "/images/tinte-11-1.png"
+      },
+      {
+        "name": "8/81 Rubio Claro Azul Ceniza",
+        "image": "/images/tinte-8-81.png"
+      },
+      {
+        "name": "9/1 Rubio Ceniza muy Claro",
+        "image": "/images/tinte-9-1.png"
+      }
     ]
   },
   {
     "id": 2,
     "name": "Shampoo Tinte 3 en 1 (Individual)",
-    "price": 12.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691628a9d46ec_7.png",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
-    "variants": [
-      "Black (Negro Intenso)",
-      "Coffee (Castaño Medio)",
-      "Dark Wine Red (Rojo Borgoña)",
-      "Dark Brown (Castaño Oscuro)",
-      "Golden Brown (Marrón Dorado)",
-      "Wine Red (Rojo Vino)",
-      "Chestnut Brown (Marrón Avellana)",
-      "Dark Chocolate (Castaño Chocolate)",
-      "Black Tea (Negro Castaño)",
-      "Black Coconut (Negro Natural)"
+    "price": 12.00,
+    "category": "Shampoos",
+    "image": "/images/shampoo-negro-natural.png",
+    "colors": [
+      {
+        "name": "Black (Negro Intenso)",
+        "image": "/images/shampoo-negro-natural.png"
+      },
+      {
+        "name": "Coffee (Castaño Medio)",
+        "image": "/images/shampoo-castano-medio.png"
+      },
+      {
+        "name": "Dark Wine Red (Rojo Borgoña)",
+        "image": "/images/shampoo-rojo-borgona.png"
+      },
+      {
+        "name": "Dark Brown (Castaño Oscuro)",
+        "image": "/images/shampoo-castano-oscuro.jpg"
+      },
+      {
+        "name": "Golden Brown (Marrón Dorado)",
+        "image": "/images/shampoo-marron-dorado.png"
+      },
+      {
+        "name": "Wine Red (Rojo Vino)",
+        "image": "/images/shampoo-rojo-vino.png"
+      },
+      {
+        "name": "Chestnut Brown (Marrón Avellana)",
+        "image": "/images/shampoo-marron-avellana.png"
+      },
+      {
+        "name": "Dark Chocolate (Castaño Chocolate)",
+        "image": "/images/shampoo-castano-chocolate.png"
+      },
+      {
+        "name": "Black Tea (Negro Castaño)",
+        "image": "/images/shampoo-negro-castano.png"
+      },
+      {
+        "name": "Black Coconut (Negro Natural)",
+        "image": "/images/shampoo-negro-natural.png"
+      }
     ]
   },
   {
     "id": 3,
     "name": "Combo Reparador",
+    "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
     "price": 30.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/691737ff6e171_28.png",
-    "description": "Rutina completa de reparación. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla Aceite de Argán + 1 Protector Térmico.",
-    "variants": [
-      "Black (Negro Intenso)",
-      "Coffee (Castaño Medio)",
-      "Dark Wine Red (Rojo Borgoña)",
-      "Dark Brown (Castaño Oscuro)",
-      "Golden Brown (Marrón Dorado)",
-      "Wine Red (Rojo Vino)",
-      "Chestnut Brown (Marrón Avellana)",
-      "Dark Chocolate (Castaño Chocolate)",
-      "Black Tea (Negro Castaño)",
-      "Black Coconut (Negro Natural)"
+    "category": "Combos",
+    "image": "/images/combo reparador.png",
+    "colors": [
+      {
+        "name": "Kit Negro Intenso",
+        "image": "/images/shampoo-negro-natural.png"
+      },
+      {
+        "name": "Kit Castaño Medio",
+        "image": "/images/shampoo-castano-medio.png"
+      },
+      {
+        "name": "Kit Rojo Borgoña",
+        "image": "/images/shampoo-rojo-borgona.png"
+      },
+      {
+        "name": "Kit Castaño Oscuro",
+        "image": "/images/shampoo-castano-oscuro.jpg"
+      },
+      {
+        "name": "Kit Marrón Dorado",
+        "image": "/images/shampoo-marron-dorado.png"
+      },
+      {
+        "name": "Kit Rojo Vino",
+        "image": "/images/shampoo-rojo-vino.png"
+      },
+      {
+        "name": "Kit Marrón Avellana",
+        "image": "/images/shampoo-marron-avellana.png"
+      },
+      {
+        "name": "Kit Castaño Chocolate",
+        "image": "/images/shampoo-castano-chocolate.png"
+      },
+      {
+        "name": "Kit Negro Castaño",
+        "image": "/images/shampoo-negro-castano.png"
+      },
+      {
+        "name": "Kit Negro Natural",
+        "image": "/images/shampoo-negro-natural.png"
+      }
     ]
   },
   {
     "id": 4,
-    "name": "Combo Suavizante",
+    "name": "Combo Maxicolor",
+    "description": "Máxima duración del color. Incluye: Shampoo Tinte (500ml) + Tratamiento Sellador de Color + Ampolla.",
     "price": 30.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6917380d81ba7_29.png",
-    "description": "Suavidad extrema. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla de Keratina + 1 Protector Térmico.",
-    "variants": [
-      "Black (Negro Intenso)",
-      "Coffee (Castaño Medio)",
-      "Dark Wine Red (Rojo Borgoña)",
-      "Dark Brown (Castaño Oscuro)",
-      "Golden Brown (Marrón Dorado)",
-      "Wine Red (Rojo Vino)",
-      "Chestnut Brown (Marrón Avellana)",
-      "Dark Chocolate (Castaño Chocolate)",
-      "Black Tea (Negro Castaño)",
-      "Black Coconut (Negro Natural)"
+    "category": "Combos",
+    "image": "/images/combo maxicolor.png",
+    "colors": [
+      {
+        "name": "Kit Negro Intenso",
+        "image": "/images/shampoo-negro-natural.png"
+      },
+      {
+        "name": "Kit Castaño Medio",
+        "image": "/images/shampoo-castano-medio.png"
+      },
+      {
+        "name": "Kit Rojo Borgoña",
+        "image": "/images/shampoo-rojo-borgona.png"
+      },
+      {
+        "name": "Kit Castaño Oscuro",
+        "image": "/images/shampoo-castano-oscuro.jpg"
+      },
+      {
+        "name": "Kit Marrón Dorado",
+        "image": "/images/shampoo-marron-dorado.png"
+      },
+      {
+        "name": "Kit Rojo Vino",
+        "image": "/images/shampoo-rojo-vino.png"
+      },
+      {
+        "name": "Kit Marrón Avellana",
+        "image": "/images/shampoo-marron-avellana.png"
+      },
+      {
+        "name": "Kit Castaño Chocolate",
+        "image": "/images/shampoo-castano-chocolate.png"
+      },
+      {
+        "name": "Kit Negro Castaño",
+        "image": "/images/shampoo-negro-castano.png"
+      },
+      {
+        "name": "Kit Negro Natural",
+        "image": "/images/shampoo-negro-natural.png"
+      }
     ]
   },
   {
     "id": 5,
-    "name": "Combo Máximo Color",
+    "name": "Combo Suavizante",
+    "description": "Suavidad extrema. Incluye: Shampoo Tinte (500ml) + Acondicionador Profundo + Sérum de Puntas.",
     "price": 30.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6917381fa6145_30.png",
-    "description": "Protección de color y cero frizz. Incluye: 1 Shampoo Tinte (500ml) + 1 Mascarilla Chao Frizz + 1 Protector Térmico.",
-    "variants": [
-      "Black (Negro Intenso)",
-      "Coffee (Castaño Medio)",
-      "Dark Wine Red (Rojo Borgoña)",
-      "Dark Brown (Castaño Oscuro)",
-      "Golden Brown (Marrón Dorado)",
-      "Wine Red (Rojo Vino)",
-      "Chestnut Brown (Marrón Avellana)",
-      "Dark Chocolate (Castaño Chocolate)",
-      "Black Tea (Negro Castaño)",
-      "Black Coconut (Negro Natural)"
+    "category": "Combos",
+    "image": "/images/combo suavizante.png",
+    "colors": [
+      {
+        "name": "Kit Negro Intenso",
+        "image": "/images/shampoo-negro-natural.png"
+      },
+      {
+        "name": "Kit Castaño Medio",
+        "image": "/images/shampoo-castano-medio.png"
+      },
+      {
+        "name": "Kit Rojo Borgoña",
+        "image": "/images/shampoo-rojo-borgona.png"
+      },
+      {
+        "name": "Kit Castaño Oscuro",
+        "image": "/images/shampoo-castano-oscuro.jpg"
+      },
+      {
+        "name": "Kit Marrón Dorado",
+        "image": "/images/shampoo-marron-dorado.png"
+      },
+      {
+        "name": "Kit Rojo Vino",
+        "image": "/images/shampoo-rojo-vino.png"
+      },
+      {
+        "name": "Kit Marrón Avellana",
+        "image": "/images/shampoo-marron-avellana.png"
+      },
+      {
+        "name": "Kit Castaño Chocolate",
+        "image": "/images/shampoo-castano-chocolate.png"
+      },
+      {
+        "name": "Kit Negro Castaño",
+        "image": "/images/shampoo-negro-castano.png"
+      },
+      {
+        "name": "Kit Negro Natural",
+        "image": "/images/shampoo-negro-natural.png"
+      }
     ]
   },
   {
     "id": 6,
     "name": "Shampoo Tea Tree Oil (Control Caspa)",
+    "description": "LovelyCSM. Fórmula libre de sulfatos y parabenos. Ideal para cabello con caspa, teñido o maltratado. (500ml).",
     "price": 18.00,
-    "image": "https://d1yei2z3i6k35z.cloudfront.net/14543017/6916291e38a30_13.png",
-    "description": "LovelyCSM. Fórmula libre de sulfatos y parabenos. Ideal para cabello con caspa, teñido o maltratado. (500ml)."
+    "category": "Tratamientos",
+    "image": "/images/shampoo anticaspa.png",
+    "colors": [
+      {
+        "name": "Control Caspa (Tea Tree)",
+        "image": "/images/shampoo anticaspa.png"
+      }
+    ]
   }
 ]
