@@ -20,19 +20,19 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     e.preventDefault();
 
     // Construct the message
-    let message = `*¡Hola! Quiero realizar un pedido en LuxeHair Venezuela.*\n\n`;
-    message += `* Cliente:* ${formData.name} \n`;
-    message += `* Teléfono:* ${formData.phone} \n`;
-    message += `* Dirección:* ${formData.address} \n\n`;
-    message += `* Pedido:*\n`;
+    let message = `*¡Hola! Quiero realizar un pedido en LuxeHair Venezuela.*\\n\\n`;
+    message += `*📋 Cliente:* ${formData.name} \\n`;
+    message += `*📱 Teléfono:* ${formData.phone} \\n`;
+    message += `*📍 Dirección:* ${formData.address} \\n\\n`;
+    message += `*🛍️ Pedido:*\\n`;
 
     cart.forEach(item => {
-      message += `- ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)} \n`;
+      message += `- ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)} \\n`;
     });
 
-    message += `\n * TOTAL A PAGAR: $${total.toFixed(2)}*\n`;
-    message += `* Referencia Pago Móvil:* ${formData.paymentRef} \n`;
-    message += `\n_Adjunto capturade pantalla del pago a continuación._`;
+    message += `\\n*💰 TOTAL A PAGAR: $${total.toFixed(2)}*\\n`;
+    message += `*🔢 Referencia Pago Móvil:* ${formData.paymentRef} \\n`;
+    message += `\\n_Adjunto captura de pantalla del pago a continuación._`;
 
     // Encode for URL
     const encodedMessage = encodeURIComponent(message);
@@ -42,15 +42,17 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
   };
 
   return (
-    <div className="p-1 h-full flex flex-col">
-      <div className="flex justify-between items-center mb-6">
+    <div className="h-[100dvh] flex flex-col">
+      {/* Header - Fixed */}
+      <div className="flex justify-between items-center p-6 pb-4 border-b border-white/10 shrink-0">
         <h2 className="text-2xl font-serif font-bold text-white">Finalizar Compra</h2>
         <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
           <X size={24} />
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto px-6 py-4">
         <div className="mb-8 space-y-2">
           {cart.map(item => (
             <div key={item.id} className="flex justify-between items-center p-3 bg-white/5 border border-white/10 rounded-lg">
@@ -101,7 +103,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           </div>
         </div>
 
-        <form onSubmit={handleWhatsAppOrder} className="space-y-4">
+        <form onSubmit={handleWhatsAppOrder} className="space-y-4 pb-4">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-300">Nombre Completo</label>
             <input
@@ -153,18 +155,24 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
               className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
             />
           </div>
-
-          <div className="pt-4 border-t border-white/10 mt-6">
-            <p className="text-xl font-bold text-white flex justify-between">
-              Total a pagar: <span className="text-gold-500">${total.toFixed(2)}</span>
-            </p>
-          </div>
-
-          <button type="submit" className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-            <Send size={20} />
-            Enviar Pedido por WhatsApp
-          </button>
         </form>
+      </div>
+
+      {/* Sticky Footer - Always Visible */}
+      <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50 shrink-0">
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-lg font-bold text-white">Total a pagar:</span>
+          <span className="text-2xl font-bold text-gold-500">${total.toFixed(2)}</span>
+        </div>
+
+        <button
+          onClick={handleWhatsAppOrder}
+          type="submit"
+          className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20"
+        >
+          <Send size={20} />
+          Enviar Pedido por WhatsApp
+        </button>
       </div>
     </div>
   );

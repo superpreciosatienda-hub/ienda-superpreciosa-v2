@@ -62,9 +62,8 @@ function App() {
           <Route path="/mayoristas" element={<Wholesale />} />
         </Routes>
 
-        {/* Cart Modal */}
         {isCartOpen && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] flex justify-end">
+          <div className="fixed inset-0 bg-black/5 backdrop-blur-sm z-[200] flex justify-end">
             <div className="w-full max-w-md bg-[#1e1e1e] h-full p-8 shadow-2xl flex flex-col border-l border-white/10">
               <div className="flex justify-between items-center mb-8 pb-4 border-b border-white/10">
                 <h2 className="text-2xl font-serif font-bold text-white">{view === 'cart' ? 'Tu Carrito' : 'Finalizar Pedido'}</h2>

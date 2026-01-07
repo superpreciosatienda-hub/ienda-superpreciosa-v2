@@ -69,7 +69,7 @@ export function Wholesale() {
             </section>
 
             {/* Section 3: FAQ */}
-            <section className="py-20 px-4">
+            <section className="py-20 px-4 pb-24 md:pb-20">
                 <div className="container mx-auto max-w-3xl">
                     <h2 className="text-3xl font-serif font-bold text-white text-center mb-12">Preguntas Frecuentes</h2>
                     <Accordion items={faqItems} />
