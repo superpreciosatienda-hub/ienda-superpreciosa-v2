@@ -63,7 +63,7 @@
     "colors": [
       {
         "name": "Black (Negro Intenso)",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images/shampoo-negro.png"
       },
       {
         "name": "Coffee (Castaño Medio)",
@@ -75,7 +75,7 @@
       },
       {
         "name": "Dark Brown (Castaño Oscuro)",
-        "image": "/images/shampoo-castano-oscuro.jpg"
+        "image": "/images/shampoo-castano-oscuro.png"
       },
       {
         "name": "Golden Brown (Marrón Dorado)",
@@ -113,7 +113,7 @@
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images/shampoo-negro.png"
       },
       {
         "name": "Kit Castaño Medio",
@@ -125,7 +125,7 @@
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.jpg"
+        "image": "/images/shampoo-castano-oscuro.png"
       },
       {
         "name": "Kit Marrón Dorado",
@@ -163,7 +163,7 @@
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images/shampoo-negro.png"
       },
       {
         "name": "Kit Castaño Medio",
@@ -175,7 +175,7 @@
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.jpg"
+        "image": "/images/shampoo-castano-oscuro.png"
       },
       {
         "name": "Kit Marrón Dorado",
@@ -213,7 +213,7 @@
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images/shampoo-negro.png"
       },
       {
         "name": "Kit Castaño Medio",
@@ -225,7 +225,7 @@
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.jpg"
+        "image": "/images/shampoo-castano-oscuro.png"
       },
       {
         "name": "Kit Marrón Dorado",
