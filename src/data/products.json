@@ -59,7 +59,7 @@
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
     "price": 12.00,
     "category": "Shampoos",
-    "image": "/images/public/images/shampoo-negro.png",
+    "image": "/images/shampoo-negro.png",
     "colors": [
       {
         "name": "Black (Negro Intenso)",
