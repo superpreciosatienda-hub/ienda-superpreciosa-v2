@@ -5,6 +5,7 @@ import { Send, Smartphone, Plus, Minus, X } from 'lucide-react';
 export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }) {
   const [formData, setFormData] = useState({
     name: '',
+    cedula: '',
     phone: '',
     address: '',
     paymentRef: ''
@@ -19,9 +20,16 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
   const handleWhatsAppOrder = (e) => {
     e.preventDefault();
 
+    // Strict validation - all fields are required
+    if (!formData.name.trim() || !formData.cedula.trim() || !formData.phone.trim() || !formData.address.trim()) {
+      alert('Por favor completa todos los datos obligatorios (incluyendo Cédula)');
+      return;
+    }
+
     // Construct the message
-    let message = `*¡Hola! Quiero realizar un pedido en LuxeHair Venezuela.*\\n\\n`;
+    let message = `*¡Hola! Quiero realizar un pedido en SuperPreciosa.*\\n\\n`;
     message += `*📋 Cliente:* ${formData.name} \\n`;
+    message += `*🆔 Cédula:* ${formData.cedula} \\n`;
     message += `*📱 Teléfono:* ${formData.phone} \\n`;
     message += `*📍 Dirección:* ${formData.address} \\n\\n`;
     message += `*🛍️ Pedido:*\\n`;
@@ -105,7 +113,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
 
         <form onSubmit={handleWhatsAppOrder} className="space-y-4 pb-4">
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Nombre Completo</label>
+            <label className="text-sm font-medium text-gray-300">Nombre Completo *</label>
             <input
               type="text"
               name="name"
@@ -118,7 +126,20 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Teléfono Celular</label>
+            <label className="text-sm font-medium text-gray-300">Cédula de Identidad *</label>
+            <input
+              type="text"
+              name="cedula"
+              required
+              placeholder="V-12345678"
+              value={formData.cedula}
+              onChange={handleChange}
+              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-gray-300">Teléfono Celular *</label>
             <input
               type="tel"
               name="phone"
@@ -131,7 +152,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Agencia de Envío (Zoom / Tealca)</label>
+            <label className="text-sm font-medium text-gray-300">Agencia de Envío (Zoom / Tealca) *</label>
             <textarea
               name="address"
               required
