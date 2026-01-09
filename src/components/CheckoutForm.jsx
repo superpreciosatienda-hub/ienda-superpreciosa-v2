@@ -20,32 +20,34 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
   const handleWhatsAppOrder = (e) => {
     e.preventDefault();
 
-    // Strict validation - all fields are required
+    // Validación estricta - todos los campos obligatorios
     if (!formData.name.trim() || !formData.cedula.trim() || !formData.phone.trim() || !formData.address.trim()) {
       alert('Por favor completa todos los datos obligatorios (incluyendo Cédula)');
       return;
     }
 
-    // Construct the message
-    let message = `*¡Hola! Quiero realizar un pedido en SuperPreciosa.*\\n\\n`;
-    message += `*📋 Cliente:* ${formData.name} \\n`;
-    message += `*🆔 Cédula:* ${formData.cedula} \\n`;
-    message += `*📱 Teléfono:* ${formData.phone} \\n`;
-    message += `*📍 Dirección:* ${formData.address} \\n\\n`;
-    message += `*🛍️ Pedido:*\\n`;
+    // Construcción del mensaje con template literals para n8n
+    const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
-    cart.forEach(item => {
-      message += `- ${item.name} x${item.quantity}: $${(item.price * item.quantity).toFixed(2)} \\n`;
-    });
+👤 Cliente: ${formData.name}
+🆔 Cédula: ${formData.cedula}
+📱 Teléfono: ${formData.phone}
+📍 Dirección: ${formData.address}
 
-    message += `\\n*💰 TOTAL A PAGAR: $${total.toFixed(2)}*\\n`;
-    message += `*🔢 Referencia Pago Móvil:* ${formData.paymentRef} \\n`;
-    message += `\\n_Adjunto captura de pantalla del pago a continuación._`;
+🛍️ *PEDIDO:*
+${cart.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
 
-    // Encode for URL
+💰 *TOTAL A PAGAR: $${total.toFixed(2)}*
+
+🔢 Referencia Pago Móvil: ${formData.paymentRef}
+
+_Adjunto captura de pantalla del pago a continuación._`;
+
+    // Codificación URL para WhatsApp
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "584124423771"; // Placeholder, user will change this
+    const whatsappNumber = "584124423771";
 
+    // Abrir WhatsApp con el mensaje
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
   };
 
