@@ -19,7 +19,7 @@ export function Wholesale() {
     ];
 
     const handleWhatsAppClick = () => {
-        window.open('https://wa.me/1234567890?text=Hola,%20me%20interesa%20la%20lista%20de%20precios%20para%20mayoristas', '_blank');
+        window.open('https://wa.me/584124423771?text=Hola,%20me%20interesa%20la%20lista%20de%20precios%20para%20mayoristas', '_blank');
     };
 
     return (
