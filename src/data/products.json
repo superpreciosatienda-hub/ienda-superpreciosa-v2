@@ -104,6 +104,40 @@
     ]
   },
   {
+    "id": "meidu-sachet-box",
+    "name": "Shampoo Tinte 3 en 1 (Caja Sachets)",
+    "description": "Shampoo, Tinte y Acondicionador en un solo paso. Presentación práctica en caja de 10 sobres (30ml). Cobertura inmediata.",
+    "price": 10.00,
+    "category": "Shampoos",
+    "image": "/images/meidu-sachet-box.jpg",
+    "colors": [
+      {
+        "name": "Black (Negro)",
+        "image": "/images/meidu-sachet-box-black.jpg"
+      },
+      {
+        "name": "Dark Brown (Marrón Oscuro)",
+        "image": "/images/meidu-sachet-box-dark-brown.jpg"
+      },
+      {
+        "name": "Dark Wine Red (Vino Tinto Oscuro)",
+        "image": "/images/meidu-sachet-box-dark-wine-red.jpg"
+      },
+      {
+        "name": "Wine Red (Vino Tinto)",
+        "image": "/images/meidu-sachet-box-wine-red.jpg"
+      },
+      {
+        "name": "Coffee (Café)",
+        "image": "/images/meidu-sachet-box-coffee.jpg"
+      },
+      {
+        "name": "Chestnut (Castaño)",
+        "image": "/images/meidu-sachet-box-chestnut.jpg"
+      }
+    ]
+  },
+  {
     "id": 3,
     "name": "Combo Reparador",
     "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
@@ -264,40 +298,6 @@
       {
         "name": "Control Caspa (Tea Tree)",
         "image": "/images/shampoo anticaspa.png"
-      }
-    ]
-  },
-  {
-    "id": "meidu-sachet-box",
-    "name": "Shampoo Tinte 3 en 1 (Caja Sachets)",
-    "description": "Shampoo, Tinte y Acondicionador en un solo paso. Presentación práctica en caja de 10 sobres (30ml). Cobertura inmediata.",
-    "price": 10.00,
-    "category": "Shampoos",
-    "image": "/meidu-sachet-box.jpg",
-    "colors": [
-      {
-        "name": "Black (Negro)",
-        "image": "/meidu-sachet-box-black.jpg"
-      },
-      {
-        "name": "Dark Brown (Marrón Oscuro)",
-        "image": "/meidu-sachet-box-dark-brown.jpg"
-      },
-      {
-        "name": "Dark Wine Red (Vino Tinto Oscuro)",
-        "image": "/meidu-sachet-box-dark-wine-red.jpg"
-      },
-      {
-        "name": "Wine Red (Vino Tinto)",
-        "image": "/meidu-sachet-box-wine-red.jpg"
-      },
-      {
-        "name": "Coffee (Café)",
-        "image": "/meidu-sachet-box-coffee.jpg"
-      },
-      {
-        "name": "Chestnut (Castaño)",
-        "image": "/meidu-sachet-box-chestnut.jpg"
       }
     ]
   }
