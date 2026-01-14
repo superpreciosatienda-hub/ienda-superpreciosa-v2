@@ -107,7 +107,7 @@ function App() {
                         className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-colors"
                         onClick={() => setView('checkout')}
                       >
-                        Ir a Pagar
+                        Continuar la Compra
                       </button>
                     </div>
                   )}
