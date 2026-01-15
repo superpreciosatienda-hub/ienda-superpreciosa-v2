@@ -57,7 +57,7 @@
     "id": 2,
     "name": "Shampoo Tinte 3 en 1 (Individual)",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
-    "price": 12.00,
+    "price": 15.00,
     "category": "Shampoos",
     "image": "/images/shampoo-negro.png",
     "colors": [
@@ -141,7 +141,7 @@
     "id": 3,
     "name": "Combo Reparador",
     "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
-    "price": 30.00,
+    "price": 35.00,
     "category": "Combos",
     "image": "/images/combo reparador.png",
     "colors": [
@@ -191,7 +191,7 @@
     "id": 4,
     "name": "Combo Maxicolor",
     "description": "Máxima duración del color. Incluye: Shampoo Tinte (500ml) + Tratamiento Sellador de Color + Ampolla.",
-    "price": 30.00,
+    "price": 35.00,
     "category": "Combos",
     "image": "/images/combo maxicolor.png",
     "colors": [
@@ -241,7 +241,7 @@
     "id": 5,
     "name": "Combo Suavizante",
     "description": "Suavidad extrema. Incluye: Shampoo Tinte (500ml) + Acondicionador Profundo + Sérum de Puntas.",
-    "price": 30.00,
+    "price": 35.00,
     "category": "Combos",
     "image": "/images/combo suavizante.png",
     "colors": [
@@ -291,7 +291,7 @@
     "id": 6,
     "name": "Shampoo Tea Tree Oil (Control Caspa)",
     "description": "LovelyCSM. Fórmula libre de sulfatos y parabenos. Ideal para cabello con caspa, teñido o maltratado. (500ml).",
-    "price": 18.00,
+    "price": 15.00,
     "category": "Tratamientos",
     "image": "/images/shampoo anticaspa.png",
     "colors": [
