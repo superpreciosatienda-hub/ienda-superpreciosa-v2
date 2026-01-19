@@ -62,7 +62,7 @@ export function Navbar({ cartCount, onOpenCart }) {
 
           {/* Hamburger Menu Button */}
           <button
-            className="text-gray-200 hover:text-gold-500 transition-colors p-2"
+            className="block md:hidden text-gray-200 hover:text-gold-500 transition-colors p-2"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
