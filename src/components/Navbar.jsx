@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Sparkles, Menu, X } from 'lucide-react';
 
 export function Navbar({ cartCount, onOpenCart }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if we're on mobile on mount
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Check on mount
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -13,58 +30,18 @@ export function Navbar({ cartCount, onOpenCart }) {
     setIsMobileMenuOpen(false);
   };
 
-  // Inline styles for responsive behavior
-  const desktopNavStyle = {
-    display: 'none',
-    alignItems: 'center',
-    gap: '1.5rem'
-  };
-
-  const mobileNavStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem'
-  };
-
-  const mobileMenuStyle = {
-    position: 'fixed',
-    top: 0,
-    right: 0,
-    height: '100%',
-    width: '16rem',
-    backgroundColor: '#1e1e1e',
-    borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-    zIndex: 50,
-    transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(100%)',
-    transition: 'transform 300ms ease-in-out'
-  };
-
   return (
-    <>
-      <style>{`
-        @media (min-width: 768px) {
-          .desktop-nav-responsive {
-            display: flex !important;
-          }
-          .mobile-nav-responsive {
-            display: none !important;
-          }
-          .mobile-menu-responsive {
-            display: none !important;
-          }
-        }
-      `}</style>
+    <nav className="sticky top-0 z-50 bg-[#1e1e1e]/80 backdrop-blur-md border-b border-white/10 py-4">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 text-2xl font-bold tracking-tight">
+          <Sparkles className="text-gold-500" size={24} />
+          <span className="text-white font-serif">SuperPreciosa</span>
+        </Link>
 
-      <nav className="sticky top-0 z-50 bg-[#1e1e1e]/80 backdrop-blur-md border-b border-white/10 py-4">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold tracking-tight">
-            <Sparkles className="text-gold-500" size={24} />
-            <span className="text-white font-serif">SuperPreciosa</span>
-          </Link>
-
-          {/* Desktop Navigation - Hidden on mobile */}
-          <div className="desktop-nav-responsive" style={desktopNavStyle}>
+        {/* Desktop Navigation - Only show on desktop */}
+        {!isMobile && (
+          <div className="flex items-center gap-6">
             <Link to="/mayoristas" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
               Mayoristas
             </Link>
@@ -85,10 +62,12 @@ export function Navbar({ cartCount, onOpenCart }) {
               )}
             </button>
           </div>
+        )}
 
-          {/* Mobile Navigation - Visible only on mobile */}
-          <div className="mobile-nav-responsive" style={mobileNavStyle}>
-            {/* Cart Icon - Always visible */}
+        {/* Mobile Navigation - Only show on mobile */}
+        {isMobile && (
+          <div className="flex items-center gap-4">
+            {/* Cart Icon */}
             <button
               className="relative text-gray-200 hover:text-gold-500 transition-colors p-2"
               onClick={onOpenCart}
@@ -110,23 +89,23 @@ export function Navbar({ cartCount, onOpenCart }) {
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
-        </div>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
-              zIndex: 40
-            }}
-            onClick={closeMobileMenu}
-          />
         )}
+      </div>
 
-        {/* Mobile Menu Slide-in */}
-        <div className="mobile-menu-responsive" style={mobileMenuStyle}>
+      {/* Mobile Menu Overlay */}
+      {isMobile && isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          onClick={closeMobileMenu}
+        />
+      )}
+
+      {/* Mobile Menu Slide-in */}
+      {isMobile && (
+        <div
+          className={`fixed top-0 right-0 h-full w-64 bg-[#1e1e1e] border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+        >
           <div className="flex flex-col p-6 gap-6">
             {/* Close Button */}
             <button
@@ -154,7 +133,7 @@ export function Navbar({ cartCount, onOpenCart }) {
             </Link>
           </div>
         </div>
-      </nav>
-    </>
+      )}
+    </nav>
   );
 }
