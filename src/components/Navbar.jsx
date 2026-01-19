@@ -16,6 +16,10 @@ export function Navbar({ cartCount, onOpenCart }) {
             Mayoristas
           </Link>
 
+          <Link to="/unete-al-equipo" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
+            Embajadoras
+          </Link>
+
           <button
             className="relative text-gray-200 hover:text-gold-500 transition-colors p-2"
             onClick={onOpenCart}
