@@ -16,13 +16,16 @@ export function Navbar({ cartCount, onOpenCart }) {
   return (
     <nav className="sticky top-0 z-50 bg-[#1e1e1e]/80 backdrop-blur-md border-b border-white/10 py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo - Siempre visible */}
         <Link to="/" className="flex items-center gap-2 text-2xl font-bold tracking-tight">
           <Sparkles className="text-gold-500" size={24} />
           <span className="text-white font-serif">SuperPreciosa</span>
         </Link>
 
-        {/* Desktop Navigation - Hidden on mobile, visible on md and up */}
+        {/* MENÚ DE ESCRITORIO (PC) 
+            hidden = Oculto en celular
+            md:flex = Visible en PC
+        */}
         <div className="hidden md:flex items-center gap-6">
           <Link to="/mayoristas" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
             Mayoristas
@@ -45,9 +48,12 @@ export function Navbar({ cartCount, onOpenCart }) {
           </button>
         </div>
 
-        {/* Mobile Navigation - Visible on mobile, hidden on md and up */}
+        {/* MENÚ DE CELULAR (MÓVIL)
+            flex = Visible en celular
+            md:hidden = Oculto en PC
+        */}
         <div className="flex md:hidden items-center gap-4">
-          {/* Cart Icon */}
+          {/* Icono de Carrito para Móvil */}
           <button
             className="relative text-gray-200 hover:text-gold-500 transition-colors p-2"
             onClick={onOpenCart}
@@ -60,7 +66,7 @@ export function Navbar({ cartCount, onOpenCart }) {
             )}
           </button>
 
-          {/* Hamburger Menu Button */}
+          {/* Botón de Hamburguesa */}
           <button
             className="block md:hidden text-gray-200 hover:text-gold-500 transition-colors p-2"
             onClick={toggleMobileMenu}
@@ -71,7 +77,7 @@ export function Navbar({ cartCount, onOpenCart }) {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Fondo oscuro cuando abres el menú móvil */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
@@ -79,13 +85,13 @@ export function Navbar({ cartCount, onOpenCart }) {
         />
       )}
 
-      {/* Mobile Menu Slide-in */}
+      {/* El Menú Desplegable Lateral */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-[#1e1e1e] border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <div className="flex flex-col p-6 gap-6">
-          {/* Close Button */}
+          {/* Botón Cerrar (X) dentro del menú */}
           <button
             className="self-end text-gray-200 hover:text-gold-500 transition-colors"
             onClick={closeMobileMenu}
@@ -93,7 +99,7 @@ export function Navbar({ cartCount, onOpenCart }) {
             <X size={24} />
           </button>
 
-          {/* Mobile Menu Links */}
+          {/* Enlaces del Menú Móvil */}
           <Link
             to="/mayoristas"
             className="text-gray-300 hover:text-gold-500 transition-colors font-medium text-lg py-2"
