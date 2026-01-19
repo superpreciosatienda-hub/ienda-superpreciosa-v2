@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag, Sparkles, Menu, X } from 'lucide-react';
+import './Navbar.css';
 
 export function Navbar({ cartCount, onOpenCart }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export function Navbar({ cartCount, onOpenCart }) {
         </Link>
 
         {/* Desktop Navigation - Hidden on mobile */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="desktop-nav items-center gap-6">
           <Link to="/mayoristas" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
             Mayoristas
           </Link>
@@ -46,7 +47,7 @@ export function Navbar({ cartCount, onOpenCart }) {
         </div>
 
         {/* Mobile Navigation - Visible only on mobile */}
-        <div className="flex md:hidden items-center gap-4">
+        <div className="mobile-nav items-center gap-4">
           {/* Cart Icon - Always visible */}
           <button
             className="relative text-gray-200 hover:text-gold-500 transition-colors p-2"
@@ -62,7 +63,7 @@ export function Navbar({ cartCount, onOpenCart }) {
 
           {/* Hamburger Menu Button */}
           <button
-            className="block md:hidden text-gray-200 hover:text-gold-500 transition-colors p-2"
+            className="text-gray-200 hover:text-gold-500 transition-colors p-2"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -74,15 +75,14 @@ export function Navbar({ cartCount, onOpenCart }) {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-40 mobile-only"
           onClick={closeMobileMenu}
         />
       )}
 
       {/* Mobile Menu Slide-in */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-[#1e1e1e] border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        className={`mobile-menu ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}
       >
         <div className="flex flex-col p-6 gap-6">
           {/* Close Button */}
