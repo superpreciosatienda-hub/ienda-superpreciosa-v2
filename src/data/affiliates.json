@@ -1,0 +1,23 @@
+{
+    "maria": {
+        "code": "maria",
+        "name": "María González",
+        "instagram": "@maria_beauty",
+        "active": true,
+        "joinDate": "2026-01-18"
+    },
+    "ana": {
+        "code": "ana",
+        "name": "Ana Rodríguez",
+        "instagram": "@ana_hair",
+        "active": true,
+        "joinDate": "2026-01-18"
+    },
+    "lucia": {
+        "code": "lucia",
+        "name": "Lucía Martínez",
+        "instagram": "@lucia_style",
+        "active": true,
+        "joinDate": "2026-01-18"
+    }
+}

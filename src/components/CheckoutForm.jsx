@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import { Send, Smartphone, Plus, Minus, X } from 'lucide-react';
+import { AFFILIATE_SYSTEM_ENABLED } from '../config/affiliates';
+import { getAffiliateWhatsAppText } from '../utils/affiliateTracking';
 
 export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }) {
   const [formData, setFormData] = useState({
@@ -27,6 +29,9 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     }
 
     // Construcción del mensaje con template literals para n8n
+    // 🎯 Obtener código de afiliada si existe
+    const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
+
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
 👤 Cliente: ${formData.name}
@@ -39,7 +44,7 @@ ${cart.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.q
 
 💰 *TOTAL A PAGAR: $${total.toFixed(2)}*
 
-🔢 Referencia Pago Móvil: ${formData.paymentRef}
+🔢 Referencia Pago Móvil: ${formData.paymentRef}${affiliateText}
 
 _Adjunto captura de pantalla del pago a continuación._`;
 

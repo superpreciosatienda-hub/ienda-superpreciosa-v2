@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Home } from './components/Home';
 import { Wholesale } from './components/Wholesale';
 import { CheckoutForm } from './components/CheckoutForm';
+import { UneteAlEquipo } from './pages/UneteAlEquipo';
+import { AFFILIATE_SYSTEM_ENABLED } from './config/affiliates';
+import { detectAffiliateCode, saveAffiliateCode } from './utils/affiliateTracking';
 
 function App() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [view, setView] = useState('cart'); // 'cart' | 'checkout'
+
+  // 🎯 Sistema de Afiliados - Detectar código en URL
+  useEffect(() => {
+    if (AFFILIATE_SYSTEM_ENABLED) {
+      const affiliateCode = detectAffiliateCode();
+      if (affiliateCode) {
+        saveAffiliateCode(affiliateCode);
+      }
+    }
+  }, []);
 
   const openCart = () => {
     setView('cart');
@@ -60,6 +73,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home addToCart={addToCart} />} />
           <Route path="/mayoristas" element={<Wholesale />} />
+          <Route path="/unete-al-equipo" element={<UneteAlEquipo />} />
         </Routes>
 
         {isCartOpen && (
