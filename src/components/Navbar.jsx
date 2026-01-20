@@ -25,7 +25,7 @@ export function Navbar({ cartCount, onOpenCart }) {
         {/* MENÚ DE ESCRITORIO (La clave: hidden md:flex) */}
         <div className="hidden md:flex items-center gap-6">
           <Link to="/mayoristas" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
-            TIENDA
+            Distribuidores
           </Link>
 
           <Link to="/unete-al-equipo" className="text-gray-300 hover:text-gold-500 transition-colors font-medium">
