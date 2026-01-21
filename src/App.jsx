@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Home } from './components/Home';
 import { Wholesale } from './components/Wholesale';
@@ -8,6 +8,32 @@ import { UneteAlEquipo } from './pages/UneteAlEquipo';
 import { Toast } from './components/Toast';
 import { AFFILIATE_SYSTEM_ENABLED } from './config/affiliates';
 import { detectAffiliateCode, saveAffiliateCode } from './utils/affiliateTracking';
+import affiliatesData from './data/affiliates.json';
+
+// --- NUEVO: COMPONENTE QUE RECIBE EL CÓDIGO (Ej: /ofelia) ---
+function AffiliateRedirect() {
+  const { code } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (code) {
+      // 1. Buscar si el código existe en tu archivo JSON
+      const codeToCheck = code.toLowerCase(); // Asegurar minúsculas
+      const isValid = affiliatesData.find(a => a.code === codeToCheck && a.active);
+
+      // 2. Si existe, guardarlo en el navegador de la clienta
+      if (isValid) {
+        saveAffiliateCode(codeToCheck);
+      }
+    }
+    // 3. Redirigir SIEMPRE al inicio (Home) para evitar pantalla negra
+    navigate('/', { replace: true });
+  }, [code, navigate]);
+
+  // Mientras redirige, mostramos fondo oscuro (es cuestión de milisegundos)
+  return <div className="min-h-screen bg-[#121212]" />;
+}
+// -----------------------------------------------------------
 
 function AppContent() {
   const location = useLocation();
@@ -17,7 +43,7 @@ function AppContent() {
   const [showToast, setShowToast] = useState(false);
   const toastTimerRef = useRef(null);
 
-  // 🎯 Sistema de Afiliados - Detectar código en URL
+  // 🎯 Sistema de Afiliados - Detectar código en URL clásica (?ref=...)
   useEffect(() => {
     if (AFFILIATE_SYSTEM_ENABLED) {
       const affiliateCode = detectAffiliateCode();
@@ -96,6 +122,10 @@ function AppContent() {
         <Route path="/" element={<Home addToCart={addToCart} />} />
         <Route path="/mayoristas" element={<Wholesale />} />
         <Route path="/unete-al-equipo" element={<UneteAlEquipo />} />
+
+        {/* 🔥 ESTA ES LA RUTA MÁGICA PARA LOS CÓDIGOS DE EMBAJADORAS 🔥 */}
+        {/* Debe ir al final para no bloquear las otras páginas */}
+        <Route path="/:code" element={<AffiliateRedirect />} />
       </Routes>
 
       {isCartOpen && (
