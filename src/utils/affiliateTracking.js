@@ -29,7 +29,8 @@ export const detectAffiliateCode = () => {
 export const isValidAffiliateCode = (code) => {
     if (!code) return false;
 
-    const affiliate = affiliatesData[code.toLowerCase()];
+    // CORRECCIÓN: Buscamos dentro de la lista (Array) en vez de buscar por clave
+    const affiliate = affiliatesData.find(a => a.code === code.toLowerCase());
     return affiliate && affiliate.active === true;
 };
 
@@ -40,7 +41,8 @@ export const isValidAffiliateCode = (code) => {
  */
 export const getAffiliateInfo = (code) => {
     if (!code) return null;
-    return affiliatesData[code.toLowerCase()] || null;
+    // CORRECCIÓN: Usamos .find para recuperar los datos de la lista
+    return affiliatesData.find(a => a.code === code.toLowerCase()) || null;
 };
 
 /**
@@ -49,6 +51,7 @@ export const getAffiliateInfo = (code) => {
  * @returns {boolean} true si se guardó correctamente
  */
 export const saveAffiliateCode = (code) => {
+    // Esta validación ahora SÍ funcionará porque ya sabe leer la lista
     if (!isValidAffiliateCode(code)) {
         console.warn('Código de afiliada inválido:', code);
         return false;
