@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Tinte Permanente Augeas",
     "description": "Coloración profesional Kera-repair. Cobertura total y brillo intenso.",
-    "price": 12.00,
+    "price": 10.97,
     "category": "Tintes",
     "image": "/images/tinte-9-00.png",
     "colors": [
@@ -57,7 +57,7 @@
     "id": 2,
     "name": "Shampoo Tinte 3 en 1 (Individual)",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
-    "price": 15.00,
+    "price": 13.97,
     "category": "Shampoos",
     "image": "/images/shampoo-negro.png",
     "colors": [
@@ -107,7 +107,7 @@
     "id": "meidu-sachet-box",
     "name": "Shampoo Tinte 3 en 1 (Caja Sachets)",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Presentación práctica en caja de 10 sobres (30ml). Cobertura inmediata.",
-    "price": 10.00,
+    "price": 9.97,
     "category": "Shampoos",
     "image": "/images/meidu-sachet-box.jpg",
     "colors": [
@@ -141,7 +141,7 @@
     "id": 3,
     "name": "Combo Reparador",
     "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
-    "price": 35.00,
+    "price": 34.97,
     "category": "Combos",
     "image": "/images/combo reparador.png",
     "colors": [
@@ -191,7 +191,7 @@
     "id": 4,
     "name": "Combo Maxicolor",
     "description": "Máxima duración del color. Incluye: Shampoo Tinte (500ml) + Tratamiento Sellador de Color + Ampolla.",
-    "price": 35.00,
+    "price": 34.97,
     "category": "Combos",
     "image": "/images/combo maxicolor.png",
     "colors": [
@@ -241,7 +241,7 @@
     "id": 5,
     "name": "Combo Suavizante",
     "description": "Suavidad extrema. Incluye: Shampoo Tinte (500ml) + Acondicionador Profundo + Sérum de Puntas.",
-    "price": 35.00,
+    "price": 34.97,
     "category": "Combos",
     "image": "/images/combo suavizante.png",
     "colors": [
