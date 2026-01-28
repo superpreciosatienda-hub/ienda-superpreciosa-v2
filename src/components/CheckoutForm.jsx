@@ -21,24 +21,22 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
   const handleWhatsAppOrder = async (e) => {
     e.preventDefault();
 
-    // 1. Validación de campos obligatorios
+    // 1. Validación estricta
     if (!formData.name.trim() || !formData.cedula.trim() || !formData.phone.trim() || !formData.address.trim()) {
       alert('Por favor completa todos los datos obligatorios (incluyendo Cédula)');
       return;
     }
 
-    // 2. Obtener rastro de afiliada/embajadora
+    // 2. Obtener código de afiliada
     const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
     const rawAffiliateCode = affiliateText.replace(' | ID: ', '').trim() || 'Directo';
 
-    // 3. Envío silencioso a n8n (Registro en Google Sheets y CRM)
+    // 3. ENVÍO DESGLOSADO A N8N (Corrección de la "cajita" de texto)
     try {
-      // Usamos fetch con 'no-cors' para disparar el evento sin bloquear la interfaz
-      fetch('https://n8n.superpreciosa.com/webhook-test/venta', {
+      await fetch('https://n8n.superpreciosa.com/webhook-test/venta', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           fecha: new Date().toLocaleDateString('es-VE'),
@@ -49,15 +47,16 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
           direccion: formData.address,
           referencia: formData.paymentRef,
-          embajadora: rawAffiliateCode
+          embajadora: rawAffiliateCode,
+          source: 'Tienda_Online'
         }),
       });
-      console.log('Sincronizando con n8n...');
+      console.log('Sincronización con n8n completada con éxito.');
     } catch (error) {
       console.error('Error enviando a n8n:', error);
     }
 
-    // 4. Construcción del mensaje para el cliente (WhatsApp)
+    // 4. Construcción del mensaje para WhatsApp
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
 👤 Cliente: ${formData.name}
@@ -75,15 +74,15 @@ ${cart.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.q
 _Adjunto captura de pantalla del pago a continuación._`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "584124423771";
+    const whatsappNumber = "584127877054";
 
-    // 5. Apertura de WhatsApp en nueva pestaña
+    // 5. Apertura de WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
   };
 
   return (
     <div className="h-[100dvh] flex flex-col bg-[#1a1a1a]">
-      {/* Header - Fixed */}
+      {/* Header */}
       <div className="flex justify-between items-center p-6 pb-4 border-b border-white/10 shrink-0">
         <h2 className="text-2xl font-serif font-bold text-white">Finalizar Compra</h2>
         <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
@@ -91,7 +90,7 @@ _Adjunto captura de pantalla del pago a continuación._`;
         </button>
       </div>
 
-      {/* Scrollable Content */}
+      {/* Contenido con Scroll */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
         <div className="mb-8 space-y-2">
           {cart.map(item => (
@@ -100,25 +99,15 @@ _Adjunto captura de pantalla del pago a continuación._`;
                 <div className="font-medium text-white">{item.name}</div>
                 <div className="text-gold-500 text-sm font-bold">${item.price.toFixed(2)}</div>
               </div>
-
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => onDecrease(item.id)}
-                  className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors"
-                >
+                <button onClick={() => onDecrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors">
                   <Minus size={14} />
                 </button>
                 <span className="w-6 text-center text-sm font-bold text-white">{item.quantity}</span>
-                <button
-                  onClick={() => onIncrease(item.id)}
-                  className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors"
-                >
+                <button onClick={() => onIncrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors">
                   <Plus size={14} />
                 </button>
-                <button
-                  onClick={() => onRemove(item.id)}
-                  className="p-1 ml-2 text-red-400 hover:text-red-300 transition-colors"
-                >
+                <button onClick={() => onRemove(item.id)} className="p-1 ml-2 text-red-400 hover:text-red-300 transition-colors">
                   <X size={14} />
                 </button>
               </div>
@@ -143,83 +132,38 @@ _Adjunto captura de pantalla del pago a continuación._`;
         <form onSubmit={handleWhatsAppOrder} className="space-y-4 pb-4">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-300">Nombre Completo *</label>
-            <input
-              type="text"
-              name="name"
-              required
-              placeholder="María Pérez"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
-            />
+            <input type="text" name="name" required placeholder="María Pérez" value={formData.name} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
           </div>
 
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-300">Cédula de Identidad *</label>
-            <input
-              type="text"
-              name="cedula"
-              required
-              placeholder="V-12345678"
-              value={formData.cedula}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
-            />
+            <input type="text" name="cedula" required placeholder="V-12345678" value={formData.cedula} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
           </div>
 
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-300">Teléfono Celular *</label>
-            <input
-              type="tel"
-              name="phone"
-              required
-              placeholder="0412-1234567"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
-            />
+            <input type="tel" name="phone" required placeholder="0412-1234567" value={formData.phone} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Agencia de Envío (Zoom / Tealca) *</label>
-            <textarea
-              name="address"
-              required
-              rows="2"
-              value={formData.address}
-              onChange={handleChange}
-              placeholder="Ej: Zoom - Oficina Centro Valencia..."
-              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
-            ></textarea>
+            <label className="text-sm font-medium text-gray-300">Agencia de Envío *</label>
+            <textarea name="address" required rows="2" value={formData.address} onChange={handleChange} placeholder="Ej: Zoom - Oficina Centro..." className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors"></textarea>
           </div>
 
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-300">Referencia de Pago (4 últimos dígitos)</label>
-            <input
-              type="text"
-              name="paymentRef"
-              required
-              placeholder="1234"
-              value={formData.paymentRef}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
-            />
+            <input type="text" name="paymentRef" required placeholder="1234" value={formData.paymentRef} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
           </div>
         </form>
       </div>
 
-      {/* Sticky Footer */}
+      {/* Footer Fijo */}
       <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50 shrink-0">
         <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-bold text-white">Total a pagar:</span>
           <span className="text-2xl font-bold text-gold-500">${total.toFixed(2)}</span>
         </div>
-
-        <button
-          onClick={handleWhatsAppOrder}
-          type="submit"
-          className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20"
-        >
+        <button onClick={handleWhatsAppOrder} type="submit" className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
           <Send size={20} />
           Enviar Pedido por WhatsApp
         </button>
