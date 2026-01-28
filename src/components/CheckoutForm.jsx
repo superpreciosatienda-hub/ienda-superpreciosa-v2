@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Send, Smartphone, Plus, Minus, X } from 'lucide-react';
 import { AFFILIATE_SYSTEM_ENABLED } from '../config/affiliates';
@@ -19,19 +18,46 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleWhatsAppOrder = (e) => {
+  const handleWhatsAppOrder = async (e) => {
     e.preventDefault();
 
-    // Validación estricta - todos los campos obligatorios
+    // 1. Validación de campos obligatorios
     if (!formData.name.trim() || !formData.cedula.trim() || !formData.phone.trim() || !formData.address.trim()) {
       alert('Por favor completa todos los datos obligatorios (incluyendo Cédula)');
       return;
     }
 
-    // Construcción del mensaje con template literals para n8n
-    // 🎯 Obtener código de afiliada si existe
+    // 2. Obtener rastro de afiliada/embajadora
     const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
+    const rawAffiliateCode = affiliateText.replace(' | ID: ', '').trim() || 'Directo';
 
+    // 3. Envío silencioso a n8n (Registro en Google Sheets y CRM)
+    try {
+      // Usamos fetch con 'no-cors' para disparar el evento sin bloquear la interfaz
+      fetch('https://n8n.superpreciosa.com/webhook/venta', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fecha: new Date().toLocaleDateString('es-VE'),
+          nombre: formData.name,
+          cedula: formData.cedula,
+          telefono: formData.phone,
+          monto: total.toFixed(2),
+          pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
+          direccion: formData.address,
+          referencia: formData.paymentRef,
+          embajadora: rawAffiliateCode
+        }),
+      });
+      console.log('Sincronizando con n8n...');
+    } catch (error) {
+      console.error('Error enviando a n8n:', error);
+    }
+
+    // 4. Construcción del mensaje para el cliente (WhatsApp)
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
 👤 Cliente: ${formData.name}
@@ -48,16 +74,15 @@ ${cart.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.q
 
 _Adjunto captura de pantalla del pago a continuación._`;
 
-    // Codificación URL para WhatsApp
     const encodedMessage = encodeURIComponent(message);
     const whatsappNumber = "584124423771";
 
-    // Abrir WhatsApp con el mensaje
+    // 5. Apertura de WhatsApp en nueva pestaña
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
   };
 
   return (
-    <div className="h-[100dvh] flex flex-col">
+    <div className="h-[100dvh] flex flex-col bg-[#1a1a1a]">
       {/* Header - Fixed */}
       <div className="flex justify-between items-center p-6 pb-4 border-b border-white/10 shrink-0">
         <h2 className="text-2xl font-serif font-bold text-white">Finalizar Compra</h2>
@@ -83,16 +108,13 @@ _Adjunto captura de pantalla del pago a continuación._`;
                 >
                   <Minus size={14} />
                 </button>
-
                 <span className="w-6 text-center text-sm font-bold text-white">{item.quantity}</span>
-
                 <button
                   onClick={() => onIncrease(item.id)}
                   className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors"
                 >
                   <Plus size={14} />
                 </button>
-
                 <button
                   onClick={() => onRemove(item.id)}
                   className="p-1 ml-2 text-red-400 hover:text-red-300 transition-colors"
@@ -186,7 +208,7 @@ _Adjunto captura de pantalla del pago a continuación._`;
         </form>
       </div>
 
-      {/* Sticky Footer - Always Visible */}
+      {/* Sticky Footer */}
       <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50 shrink-0">
         <div className="flex justify-between items-center mb-4">
           <span className="text-lg font-bold text-white">Total a pagar:</span>
