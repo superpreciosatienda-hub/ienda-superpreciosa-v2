@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
-import { Send, Sparkles, DollarSign, Share2, TrendingUp, CheckCircle2, Gift } from 'lucide-react';
+import { Send, Sparkles, DollarSign, Share2, TrendingUp, CheckCircle2, Gift, Loader2 } from 'lucide-react';
+
+// 🔗 URL DE CONEXIÓN A N8N
+const N8N_WEBHOOK_URL = "https://n8n.superpreciosa.com/webhook/embajadora";
 
 export function UneteAlEquipo() {
+    // Hemos agregado 'telefono' y cambiado 'name' a 'nombre' para coincidir con n8n
     const [formData, setFormData] = useState({
-        name: '',
+        nombre: '',
         email: '',
+        telefono: '', // <--- Nuevo Campo Vital
         instagram: '',
         codigoDeseado: ''
     });
+
     const [acceptedTerms, setAcceptedTerms] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
+
+    // Estado para manejar la carga y mensajes
+    const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!acceptedTerms) {
@@ -23,21 +32,35 @@ export function UneteAlEquipo() {
             return;
         }
 
-        // Mensaje de WhatsApp
-        const message = `🌟 *SOLICITUD DE REGISTRO - EMBAJADORA SUPERPRECIOSA*
+        setStatus('loading');
 
-👤 Nombre: ${formData.name}
-📧 Email: ${formData.email}
-📱 Instagram/TikTok: ${formData.instagram}
-🎁 Código deseado: ${formData.codigoDeseado}
+        try {
+            const response = await fetch(N8N_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    fecha: new Date().toISOString(),
+                    origen: window.location.origin
+                })
+            });
 
-✅ He leído y acepto los términos y condiciones del programa de embajadoras.
-
-¡Estoy lista para comenzar a ganar! 💰`;
-
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappNumber = "584124423771";
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+            if (response.ok) {
+                setStatus('success');
+                // Limpiar formulario
+                setFormData({ nombre: '', email: '', telefono: '', instagram: '', codigoDeseado: '' });
+                setAcceptedTerms(false);
+                // Scroll suave hacia el mensaje de éxito
+                window.scrollTo({ top: document.getElementById('form-section').offsetTop, behavior: 'smooth' });
+            } else {
+                throw new Error('Error en el servidor');
+            }
+        } catch (error) {
+            console.error("Error enviando:", error);
+            setStatus('error');
+        }
     };
 
     return (
@@ -134,38 +157,24 @@ export function UneteAlEquipo() {
                     </div>
 
                     <div className="max-w-4xl mx-auto grid md:grid-cols-4 gap-8">
-                        {/* Paso 1 */}
+                        {/* Pasos (Se mantienen igual) */}
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">
-                                1
-                            </div>
+                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">1</div>
                             <h3 className="text-xl font-bold text-white mb-2">Regístrate</h3>
                             <p className="text-gray-400 text-sm">Crea tu cuenta gratis en minutos</p>
                         </div>
-
-                        {/* Paso 2 */}
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">
-                                2
-                            </div>
+                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">2</div>
                             <h3 className="text-xl font-bold text-white mb-2">Comparte</h3>
                             <p className="text-gray-400 text-sm">Usa tu link personalizado</p>
                         </div>
-
-                        {/* Paso 3 */}
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">
-                                3
-                            </div>
+                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">3</div>
                             <h3 className="text-xl font-bold text-white mb-2">Gana</h3>
                             <p className="text-gray-400 text-sm">15% por cada venta confirmada</p>
                         </div>
-
-                        {/* Paso 4 */}
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">
-                                4
-                            </div>
+                            <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">4</div>
                             <h3 className="text-xl font-bold text-white mb-2">Retira</h3>
                             <p className="text-gray-400 text-sm">Pagos mensuales garantizados</p>
                         </div>
@@ -174,24 +183,25 @@ export function UneteAlEquipo() {
             </section>
 
             {/* Formulario de Registro */}
-            <section className="py-20 bg-[#0a0a0a]">
+            <section id="form-section" className="py-20 bg-[#0a0a0a]">
                 <div className="container mx-auto px-4">
                     <div className="max-w-2xl mx-auto">
-                        <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12">
-                            <div className="text-center mb-8">
+                        <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+
+                            <div className="text-center mb-8 relative z-10">
                                 <TrendingUp className="text-gold-500 mx-auto mb-4" size={48} />
                                 <h2 className="text-3xl font-serif font-bold text-white mb-2">Únete Ahora</h2>
                                 <p className="text-gray-400">Completa el formulario y comienza a ganar</p>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">Nombre Completo *</label>
                                     <input
                                         type="text"
-                                        name="name"
+                                        name="nombre"
                                         required
-                                        value={formData.name}
+                                        value={formData.nombre}
                                         onChange={handleChange}
                                         placeholder="María González"
                                         className="w-full p-4 rounded-xl border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
@@ -209,6 +219,21 @@ export function UneteAlEquipo() {
                                         placeholder="maria@ejemplo.com"
                                         className="w-full p-4 rounded-xl border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
                                     />
+                                </div>
+
+                                {/* NUEVO CAMPO: WhatsApp */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-300 mb-2">WhatsApp (con código país) *</label>
+                                    <input
+                                        type="tel"
+                                        name="telefono"
+                                        required
+                                        value={formData.telefono}
+                                        onChange={handleChange}
+                                        placeholder="584121234567"
+                                        className="w-full p-4 rounded-xl border border-white/10 bg-white/5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500 transition-colors"
+                                    />
+                                    <p className="text-xs text-gray-500 mt-2">Ingresa solo números, sin el símbolo (+).</p>
                                 </div>
 
                                 <div>
@@ -246,9 +271,9 @@ export function UneteAlEquipo() {
                                             id="terms"
                                             checked={acceptedTerms}
                                             onChange={(e) => setAcceptedTerms(e.target.checked)}
-                                            className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5 text-gold-500 focus:ring-gold-500"
+                                            className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5 text-gold-500 focus:ring-gold-500 cursor-pointer"
                                         />
-                                        <label htmlFor="terms" className="text-sm text-gray-300">
+                                        <label htmlFor="terms" className="text-sm text-gray-300 cursor-pointer">
                                             Acepto los{' '}
                                             <button
                                                 type="button"
@@ -262,20 +287,47 @@ export function UneteAlEquipo() {
                                     </div>
                                 </div>
 
+                                {/* Botón de Envío */}
                                 <button
                                     type="submit"
-                                    className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20"
+                                    disabled={status === 'loading'}
+                                    className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    <Send size={20} />
-                                    Enviar Solicitud por WhatsApp
+                                    {status === 'loading' ? (
+                                        <>
+                                            <Loader2 className="animate-spin" size={20} />
+                                            Procesando...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={20} />
+                                            ¡Quiero Ser Embajadora!
+                                        </>
+                                    )}
                                 </button>
+
+                                {/* Mensajes de Estado */}
+                                {status === 'success' && (
+                                    <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-center">
+                                        <p className="text-green-400 font-bold mb-1">✅ ¡Solicitud Recibida!</p>
+                                        <p className="text-gray-300 text-sm">Te hemos enviado un WhatsApp y un correo con los siguientes pasos.</p>
+                                    </div>
+                                )}
+
+                                {status === 'error' && (
+                                    <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
+                                        <p className="text-red-400 font-bold mb-1">❌ Hubo un error</p>
+                                        <p className="text-gray-300 text-sm">Por favor revisa tu conexión o intenta más tarde.</p>
+                                    </div>
+                                )}
+
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* FAQ */}
+            {/* FAQ (Se mantiene igual) */}
             <section className="py-20 bg-[#121212]">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto">
@@ -304,7 +356,7 @@ export function UneteAlEquipo() {
                 </div>
             </section>
 
-            {/* Modal de Términos y Condiciones */}
+            {/* Modal de Términos y Condiciones (Se mantiene igual) */}
             {showTerms && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[300] flex items-center justify-center p-4">
                     <div className="bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8">
