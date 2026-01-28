@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Send, Sparkles, DollarSign, Share2, TrendingUp, CheckCircle2, Gift, Loader2 } from 'lucide-react';
+import { Send, Sparkles, DollarSign, Share2, TrendingUp, CheckCircle2, Gift } from 'lucide-react';
 
 // 🔗 URL DE CONEXIÓN A N8N
 const N8N_WEBHOOK_URL = "https://n8n.superpreciosa.com/webhook/embajadora";
 
 export function UneteAlEquipo() {
-    // Hemos agregado 'telefono' y cambiado 'name' a 'nombre' para coincidir con n8n
     const [formData, setFormData] = useState({
         nombre: '',
         email: '',
-        telefono: '', // <--- Nuevo Campo Vital
+        telefono: '',
         instagram: '',
         codigoDeseado: ''
     });
@@ -53,7 +52,10 @@ export function UneteAlEquipo() {
                 setFormData({ nombre: '', email: '', telefono: '', instagram: '', codigoDeseado: '' });
                 setAcceptedTerms(false);
                 // Scroll suave hacia el mensaje de éxito
-                window.scrollTo({ top: document.getElementById('form-section').offsetTop, behavior: 'smooth' });
+                const formSection = document.getElementById('form-section');
+                if (formSection) {
+                    window.scrollTo({ top: formSection.offsetTop, behavior: 'smooth' });
+                }
             } else {
                 throw new Error('Error en el servidor');
             }
@@ -157,7 +159,6 @@ export function UneteAlEquipo() {
                     </div>
 
                     <div className="max-w-4xl mx-auto grid md:grid-cols-4 gap-8">
-                        {/* Pasos (Se mantienen igual) */}
                         <div className="text-center">
                             <div className="w-16 h-16 rounded-full bg-gold-500 text-black font-bold text-2xl flex items-center justify-center mx-auto mb-4">1</div>
                             <h3 className="text-xl font-bold text-white mb-2">Regístrate</h3>
@@ -221,7 +222,6 @@ export function UneteAlEquipo() {
                                     />
                                 </div>
 
-                                {/* NUEVO CAMPO: WhatsApp */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-300 mb-2">WhatsApp (con código país) *</label>
                                     <input
@@ -263,7 +263,6 @@ export function UneteAlEquipo() {
                                     <p className="text-xs text-gray-500 mt-2">Tu link será: superpreciosa.com/?ref={formData.codigoDeseado || 'tucodigo'}</p>
                                 </div>
 
-                                {/* Términos y Condiciones */}
                                 <div className="bg-white/5 border border-white/10 rounded-xl p-6">
                                     <div className="flex items-start gap-3">
                                         <input
@@ -287,26 +286,15 @@ export function UneteAlEquipo() {
                                     </div>
                                 </div>
 
-                                {/* Botón de Envío */}
+                                {/* BOTÓN SEGURO (Sin Loader) */}
                                 <button
                                     type="submit"
                                     disabled={status === 'loading'}
                                     className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    {status === 'loading' ? (
-                                        <>
-                                            <Loader2 className="animate-spin" size={20} />
-                                            Procesando...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Send size={20} />
-                                            ¡Quiero Ser Embajadora!
-                                        </>
-                                    )}
+                                    {status === 'loading' ? '⏳ Enviando datos...' : 'Enviar Solicitud'}
                                 </button>
 
-                                {/* Mensajes de Estado */}
                                 {status === 'success' && (
                                     <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-center">
                                         <p className="text-green-400 font-bold mb-1">✅ ¡Solicitud Recibida!</p>
@@ -327,7 +315,7 @@ export function UneteAlEquipo() {
                 </div>
             </section>
 
-            {/* FAQ (Se mantiene igual) */}
+            {/* FAQ */}
             <section className="py-20 bg-[#121212]">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto">
@@ -356,7 +344,7 @@ export function UneteAlEquipo() {
                 </div>
             </section>
 
-            {/* Modal de Términos y Condiciones (Se mantiene igual) */}
+            {/* Modal de Términos */}
             {showTerms && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[300] flex items-center justify-center p-4">
                     <div className="bg-[#1e1e1e] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8">
