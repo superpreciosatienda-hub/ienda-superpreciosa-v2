@@ -34,7 +34,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     // 3. Envío silencioso a n8n (Registro en Google Sheets y CRM)
     try {
       // Usamos fetch con 'no-cors' para disparar el evento sin bloquear la interfaz
-      fetch('https://n8n.superpreciosa.com/webhook/venta', {
+      fetch('https://n8n.superpreciosa.com/webhook-test/venta', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
