@@ -27,16 +27,19 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
       return;
     }
 
-    // 2. CAPTURA DINÁMICA DE EMBAJADORA
-    // Obtenemos el texto de afiliado (ej: " | ID: reina1122")
+    // --- CAPTURA DINÁMICA DE EMBAJADORA (MEJORADA) ---
     const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
+    let rawAffiliateCode = 'Directo';
 
-    // Extraemos solo el código. Si no hay, enviamos "Directo"
-    const rawAffiliateCode = affiliateText.includes('ID:')
-      ? affiliateText.split('ID:')[1].trim()
-      : 'Directo';
+    if (affiliateText) {
+      // Intentamos extraer el código después de "ID:" o limpiamos el texto que llegue
+      rawAffiliateCode = affiliateText.includes('ID:')
+        ? affiliateText.split('ID:')[1].trim()
+        : affiliateText.replace(/[|ID:\s]/g, '').trim() || 'Directo';
+    }
+    // ------------------------------------------------
 
-    // 3. ENVÍO ESTRUCTURADO A N8N
+    // 2. ENVÍO ESTRUCTURADO A N8N
     try {
       await fetch('https://n8n.superpreciosa.com/webhook/venta', {
         method: 'POST',
@@ -52,7 +55,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
           direccion: formData.address,
           referencia: formData.paymentRef,
-          embajadora: rawAffiliateCode, // <--- Ahora es Dinámico
+          embajadora: rawAffiliateCode, // <--- Valor dinámico capturado
           source: 'Tienda_Online'
         }),
       });
@@ -60,7 +63,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
       console.error('Error enviando a n8n:', error);
     }
 
-    // 4. Construcción del mensaje para WhatsApp
+    // 3. Construcción del mensaje para WhatsApp
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
 👤 Cliente: ${formData.name}
@@ -79,13 +82,11 @@ _Adjunto captura de pantalla del pago a continuación._`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappNumber = "584124423771";
-
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
   };
 
   return (
     <div className="h-[100dvh] flex flex-col bg-[#1a1a1a]">
-      {/* Header */}
       <div className="flex justify-between items-center p-6 pb-4 border-b border-white/10 shrink-0">
         <h2 className="text-2xl font-serif font-bold text-white">Finalizar Compra</h2>
         <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
@@ -93,7 +94,6 @@ _Adjunto captura de pantalla del pago a continuación._`;
         </button>
       </div>
 
-      {/* Contenido con Scroll */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
         <div className="mb-8 space-y-2 text-white">
           {cart.map(item => (
@@ -133,7 +133,6 @@ _Adjunto captura de pantalla del pago a continuación._`;
         </form>
       </div>
 
-      {/* Footer */}
       <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50">
         <div className="flex justify-between items-center mb-4 text-white">
           <span className="text-lg font-bold">Total a pagar:</span>
