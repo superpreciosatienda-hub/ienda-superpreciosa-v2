@@ -27,15 +27,24 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
       return;
     }
 
-    // --- CAPTURA DINÁMICA DE EMBAJADORA (MEJORADA) ---
+    // --- CAPTURA DINÁMICA DE EMBAJADORA (ROBUSTA) ---
+    // 1. Captura agresiva desde la URL actual
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlRef = urlParams.get('ref');
+
+    // 2. Captura desde el sistema de rastreo (localStorage)
     const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
+
     let rawAffiliateCode = 'Directo';
 
-    if (affiliateText) {
-      // Intentamos extraer el código después de "ID:" o limpiamos el texto que llegue
+    if (urlRef) {
+      // Prioridad 1: Código presente en la URL actual
+      rawAffiliateCode = urlRef.trim();
+    } else if (affiliateText) {
+      // Prioridad 2: Rastro previo recuperado del sistema
       rawAffiliateCode = affiliateText.includes('ID:')
         ? affiliateText.split('ID:')[1].trim()
-        : affiliateText.replace(/[|ID:\s]/g, '').trim() || 'Directo';
+        : affiliateText.replace(/[|ID:\s]/g, '').trim();
     }
     // ------------------------------------------------
 
