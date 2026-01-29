@@ -21,17 +21,22 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
   const handleWhatsAppOrder = async (e) => {
     e.preventDefault();
 
-    // 1. Validación estricta
+    // 1. Validación de campos obligatorios
     if (!formData.name.trim() || !formData.cedula.trim() || !formData.phone.trim() || !formData.address.trim()) {
-      alert('Por favor completa todos los datos obligatorios (incluyendo Cédula)');
+      alert('Por favor completa todos los datos obligatorios');
       return;
     }
 
-    // 2. Obtener código de afiliada
+    // 2. CAPTURA DINÁMICA DE EMBAJADORA
+    // Obtenemos el texto de afiliado (ej: " | ID: reina1122")
     const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
-    const rawAffiliateCode = affiliateText.replace(' | ID: ', '').trim() || 'Directo';
 
-    // 3. ENVÍO DESGLOSADO A N8N (Corrección de la "cajita" de texto)
+    // Extraemos solo el código. Si no hay, enviamos "Directo"
+    const rawAffiliateCode = affiliateText.includes('ID:')
+      ? affiliateText.split('ID:')[1].trim()
+      : 'Directo';
+
+    // 3. ENVÍO ESTRUCTURADO A N8N
     try {
       await fetch('https://n8n.superpreciosa.com/webhook/venta', {
         method: 'POST',
@@ -47,11 +52,10 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
           pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
           direccion: formData.address,
           referencia: formData.paymentRef,
-          embajadora: rawAffiliateCode,
+          embajadora: rawAffiliateCode, // <--- Ahora es Dinámico
           source: 'Tienda_Online'
         }),
       });
-      console.log('Sincronización con n8n completada con éxito.');
     } catch (error) {
       console.error('Error enviando a n8n:', error);
     }
@@ -74,9 +78,8 @@ ${cart.map(item => `• ${item.name} x${item.quantity} - $${(item.price * item.q
 _Adjunto captura de pantalla del pago a continuación._`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "584127877054";
+    const whatsappNumber = "584124423771";
 
-    // 5. Apertura de WhatsApp
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
   };
 
@@ -92,80 +95,52 @@ _Adjunto captura de pantalla del pago a continuación._`;
 
       {/* Contenido con Scroll */}
       <div className="flex-1 overflow-y-auto px-6 py-4">
-        <div className="mb-8 space-y-2">
+        <div className="mb-8 space-y-2 text-white">
           {cart.map(item => (
             <div key={item.id} className="flex justify-between items-center p-3 bg-white/5 border border-white/10 rounded-lg">
               <div className="flex-1">
-                <div className="font-medium text-white">{item.name}</div>
+                <div className="font-medium">{item.name}</div>
                 <div className="text-gold-500 text-sm font-bold">${item.price.toFixed(2)}</div>
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => onDecrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors">
-                  <Minus size={14} />
-                </button>
-                <span className="w-6 text-center text-sm font-bold text-white">{item.quantity}</span>
-                <button onClick={() => onIncrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20 text-white transition-colors">
-                  <Plus size={14} />
-                </button>
-                <button onClick={() => onRemove(item.id)} className="p-1 ml-2 text-red-400 hover:text-red-300 transition-colors">
-                  <X size={14} />
-                </button>
+                <button onClick={() => onDecrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20"><Minus size={14} /></button>
+                <span className="w-6 text-center text-sm font-bold">{item.quantity}</span>
+                <button onClick={() => onIncrease(item.id)} className="p-1 bg-white/10 rounded hover:bg-white/20"><Plus size={14} /></button>
+                <button onClick={() => onRemove(item.id)} className="p-1 ml-2 text-red-400"><X size={14} /></button>
               </div>
             </div>
           ))}
-          {cart.length === 0 && <p className="text-gray-500 text-center">No hay productos en el carrito.</p>}
         </div>
 
-        <div className="bg-gold-500/10 border border-gold-500/30 p-4 rounded-xl flex gap-4 items-start mb-8">
+        <div className="bg-gold-500/10 border border-gold-500/30 p-4 rounded-xl flex gap-4 items-start mb-8 text-white">
           <Smartphone className="text-gold-500 shrink-0" size={24} />
           <div>
-            <h3 className="font-bold text-white mb-2">Datos para Pago Móvil</h3>
+            <h3 className="font-bold mb-2">Datos para Pago Móvil</h3>
             <div className="space-y-1 text-sm text-gray-300">
               <p><strong className="text-white">Banco:</strong> Banesco (0134)</p>
               <p><strong className="text-white">Cédula:</strong> V-9.315.144</p>
               <p><strong className="text-white">Teléfono:</strong> 0424-4189936</p>
-              <p className="text-gold-500 font-medium mt-2">Tasa del día: Consultar al DM</p>
             </div>
           </div>
         </div>
 
         <form onSubmit={handleWhatsAppOrder} className="space-y-4 pb-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Nombre Completo *</label>
-            <input type="text" name="name" required placeholder="María Pérez" value={formData.name} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Cédula de Identidad *</label>
-            <input type="text" name="cedula" required placeholder="V-12345678" value={formData.cedula} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Teléfono Celular *</label>
-            <input type="tel" name="phone" required placeholder="0412-1234567" value={formData.phone} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Agencia de Envío *</label>
-            <textarea name="address" required rows="2" value={formData.address} onChange={handleChange} placeholder="Ej: Zoom - Oficina Centro..." className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors"></textarea>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium text-gray-300">Referencia de Pago (4 últimos dígitos)</label>
-            <input type="text" name="paymentRef" required placeholder="1234" value={formData.paymentRef} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white focus:outline-none focus:border-gold-500 transition-colors" />
-          </div>
+          <input type="text" name="name" required placeholder="Nombre Completo" value={formData.name} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white outline-none focus:border-gold-500" />
+          <input type="text" name="cedula" required placeholder="Cédula de Identidad" value={formData.cedula} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white outline-none focus:border-gold-500" />
+          <input type="tel" name="phone" required placeholder="Teléfono Celular" value={formData.phone} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white outline-none focus:border-gold-500" />
+          <textarea name="address" required rows="2" placeholder="Agencia de Envío" value={formData.address} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white outline-none focus:border-gold-500"></textarea>
+          <input type="text" name="paymentRef" required placeholder="Referencia de Pago (4 dígitos)" value={formData.paymentRef} onChange={handleChange} className="w-full p-3 rounded-lg border border-white/10 bg-white/5 text-white outline-none focus:border-gold-500" />
         </form>
       </div>
 
-      {/* Footer Fijo */}
-      <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50 shrink-0">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-lg font-bold text-white">Total a pagar:</span>
+      {/* Footer */}
+      <div className="sticky bottom-0 bg-[#1e1e1e] border-t border-white/10 p-4 z-50">
+        <div className="flex justify-between items-center mb-4 text-white">
+          <span className="text-lg font-bold">Total a pagar:</span>
           <span className="text-2xl font-bold text-gold-500">${total.toFixed(2)}</span>
         </div>
-        <button onClick={handleWhatsAppOrder} type="submit" className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
-          <Send size={20} />
-          Enviar Pedido por WhatsApp
+        <button onClick={handleWhatsAppOrder} type="submit" className="w-full bg-gold-500 text-black py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2">
+          <Send size={20} /> Enviar Pedido por WhatsApp
         </button>
       </div>
     </div>
