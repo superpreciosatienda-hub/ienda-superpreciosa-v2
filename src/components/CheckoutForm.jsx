@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Send, Smartphone, Plus, Minus, X } from 'lucide-react';
 import { AFFILIATE_SYSTEM_ENABLED } from '../config/affiliates';
-import { getAffiliateWhatsAppText } from '../utils/affiliateTracking';
+import { getAffiliateWhatsAppText, getActiveAffiliate } from '../utils/affiliateTracking';
 
 export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }) {
   const [formData, setFormData] = useState({
@@ -32,19 +32,17 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     const urlParams = new URLSearchParams(window.location.search);
     const urlRef = urlParams.get('ref');
 
-    // 2. Captura desde el sistema de rastreo (localStorage)
-    const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
+    // 2. Captura desde el sistema de rastreo (localStorage) - DIRECTO
+    const activeAffiliate = AFFILIATE_SYSTEM_ENABLED ? getActiveAffiliate() : null;
 
     let rawAffiliateCode = 'Directo';
 
     if (urlRef) {
       // Prioridad 1: Código presente en la URL actual
-      rawAffiliateCode = urlRef.trim();
-    } else if (affiliateText) {
-      // Prioridad 2: Rastro previo recuperado del sistema
-      rawAffiliateCode = affiliateText.includes('ID:')
-        ? affiliateText.split('ID:')[1].trim()
-        : affiliateText.replace(/[|ID:\s]/g, '').trim();
+      rawAffiliateCode = urlRef.trim().toLowerCase();
+    } else if (activeAffiliate && activeAffiliate.code) {
+      // Prioridad 2: Código recuperado directamente del objeto guardado
+      rawAffiliateCode = activeAffiliate.code;
     }
     // ------------------------------------------------
 
