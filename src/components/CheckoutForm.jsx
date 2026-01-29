@@ -33,6 +33,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     const urlRef = urlParams.get('ref');
 
     // 2. Captura desde el sistema de rastreo (localStorage) - DIRECTO
+    // Recuperamos sincrónicamente para renderizado inicial, pero la validación real ocurrió al guardar
     const activeAffiliate = AFFILIATE_SYSTEM_ENABLED ? getActiveAffiliate() : null;
 
     let rawAffiliateCode = 'Directo';
