@@ -33,7 +33,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
 
     // 3. ENVÍO DESGLOSADO A N8N (Corrección de la "cajita" de texto)
     try {
-      await fetch('https://n8n.superpreciosa.com/webhook-test/venta', {
+      await fetch('https://n8n.superpreciosa.com/webhook/venta', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
