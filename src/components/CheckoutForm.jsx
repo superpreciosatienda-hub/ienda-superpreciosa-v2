@@ -47,29 +47,26 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     }
     // ------------------------------------------------
 
-    // 2. ENVÍO ESTRUCTURADO A N8N
-    try {
-      await fetch('https://n8n.superpreciosa.com/webhook/venta', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          fecha: new Date().toLocaleDateString('es-VE'),
-          nombre: formData.name,
-          cedula: formData.cedula,
-          telefono: formData.phone,
-          monto: total.toFixed(2),
-          pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
-          direccion: formData.address,
-          referencia: formData.paymentRef,
-          embajadora: rawAffiliateCode, // <--- Valor dinámico capturado
-          source: 'Tienda_Online'
-        }),
-      });
-    } catch (error) {
-      console.error('Error enviando a n8n:', error);
-    }
+    // 2. ENVÍO ESTRUCTURADO A N8N (Non-blocking)
+    // No usamos 'await' para que no retrase la apertura de WhatsApp
+    fetch('https://n8n.superpreciosa.com/webhook/venta', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fecha: new Date().toLocaleDateString('es-VE'),
+        nombre: formData.name,
+        cedula: formData.cedula,
+        telefono: formData.phone,
+        monto: total.toFixed(2),
+        pedido: cart.map(item => `${item.name} (x${item.quantity})`).join(', '),
+        direccion: formData.address,
+        referencia: formData.paymentRef,
+        embajadora: rawAffiliateCode, // <--- Valor dinámico capturado
+        source: 'Tienda_Online'
+      }),
+    }).catch(error => console.error('Error enviando a n8n:', error));
 
     // 3. Construcción del mensaje para WhatsApp
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
