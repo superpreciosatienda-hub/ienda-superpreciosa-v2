@@ -69,6 +69,7 @@ export function CheckoutForm({ cart, onClose, onIncrease, onDecrease, onRemove }
     }).catch(error => console.error('Error enviando a n8n:', error));
 
     // 3. Construcción del mensaje para WhatsApp
+    const affiliateText = AFFILIATE_SYSTEM_ENABLED ? getAffiliateWhatsAppText() : '';
     const message = `¡Hola! 👋 Quiero confirmar mi pedido en *SuperPreciosa*.
 
 👤 Cliente: ${formData.name}
