@@ -17,13 +17,14 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
 
 /**
  * Obtiene la lista de embajadoras válidas (desde API o JSON local)
+ * @param {boolean} forceRefresh - Forzar recarga desde la API ignorando cache
  * @returns {Promise<Array>} Lista de objetos de afiliadas
  */
-export const getValidAffiliates = async () => {
+export const getValidAffiliates = async (forceRefresh = false) => {
     const now = Date.now();
 
-    // 1. Usar cache si es válido
-    if (affiliatesCache && (now - cacheTimestamp) < CACHE_DURATION) {
+    // 1. Usar cache si es válido y no se fuerza refresco
+    if (!forceRefresh && affiliatesCache && (now - cacheTimestamp) < CACHE_DURATION) {
         return affiliatesCache;
     }
 
@@ -37,10 +38,11 @@ export const getValidAffiliates = async () => {
         if (Array.isArray(data)) {
             affiliatesCache = data;
             cacheTimestamp = now;
+            console.log('📦 Embajadoras actualizadas desde API:', data.length);
             return data;
         }
     } catch (error) {
-        console.warn('⚠️ Usando lista local de embajadoras (API no disponible)');
+        console.warn('⚠️ Usando lista local de embajadoras (API no disponible/error)');
     }
 
     // 3. Fallback: Usar archivo JSON local
@@ -79,9 +81,20 @@ export const isValidAffiliateCode = (code) => {
  */
 export const isValidAffiliateCodeAsync = async (code) => {
     if (!code) return false;
-    const affiliates = await getValidAffiliates();
-    const affiliate = affiliates.find(a => a.code === code.toLowerCase());
-    return affiliate && affiliate.active === true; // API debe devolver active: true
+
+    // Intento 1: Usar cache o lo que tengamos
+    let affiliates = await getValidAffiliates(false);
+    let affiliate = affiliates.find(a => a.code === code.toLowerCase());
+
+    // Si lo encontramos y está activo, retornamos true
+    if (affiliate && affiliate.active === true) return true;
+
+    // Intento 2: Si no lo encontramos, forzamos recarga de la API (por si es nueva)
+    console.log('🔄 Código no encontrado en cache, forzando recarga API...', code);
+    affiliates = await getValidAffiliates(true);
+    affiliate = affiliates.find(a => a.code === code.toLowerCase());
+
+    return affiliate && affiliate.active === true;
 };
 
 /**

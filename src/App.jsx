@@ -7,7 +7,7 @@ import { CheckoutForm } from './components/CheckoutForm';
 import { UneteAlEquipo } from './pages/UneteAlEquipo';
 import { Toast } from './components/Toast';
 import { AFFILIATE_SYSTEM_ENABLED } from './config/affiliates';
-import { detectAffiliateCode, saveAffiliateCode, isValidAffiliateCodeAsync } from './utils/affiliateTracking';
+import { detectAffiliateCode, saveAffiliateCode, isValidAffiliateCodeAsync, clearAffiliateCode } from './utils/affiliateTracking';
 import affiliatesData from './data/affiliates.json';
 
 // --- NUEVO: COMPONENTE QUE RECIBE EL CÓDIGO (Ej: /ofelia) ---
@@ -17,15 +17,21 @@ function AffiliateRedirect() {
 
   useEffect(() => {
     const validateAndSave = async () => {
+      // 0. LIMPIEZA: Siempre limpiar sesión anterior al entrar por un link nuevo
+      clearAffiliateCode();
+
       if (code) {
         // 1. Validar código (ahora soporta async/API)
         const codeToCheck = code.toLowerCase();
         // Usamos la versión Async que consulta API + Cache
+        console.log('🔍 Validando embajadora:', codeToCheck);
         const isValid = await isValidAffiliateCodeAsync(codeToCheck);
 
         // 2. Si existe, guardarlo (skipValidation=true porque ya validamos)
         if (isValid) {
           saveAffiliateCode(codeToCheck, true);
+        } else {
+          console.warn('❌ Código embajadora no válido o inactivo:', codeToCheck);
         }
       }
       // 3. Redirigir SIEMPRE al inicio
