@@ -49,7 +49,7 @@ export function ProductCard({ product, onAddToCart }) {
 
         {product.colors && (
           <div className="mb-4">
-            <label className="block text-xs text-gray-500 mb-1 uppercase tracking-wider">Selecciona un tono:</label>
+            <label className="block text-sm text-white font-bold mb-2 uppercase tracking-wider">Selecciona un tono:</label>
             <select
               value={selectedColor ? selectedColor.name : ''}
               onChange={handleColorChange}

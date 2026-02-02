@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export function Hero() {
     return (
@@ -18,9 +19,20 @@ export function Hero() {
                 <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-sans">
                     Tu Cabello, Tu Corona. Descubre nuestra colección exclusiva para un brillo radiante.
                 </p>
-                <button className="bg-gold-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                    Explorar Colección
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Link
+                        to="/mayoristas"
+                        className="bg-gold-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] w-full sm:w-auto"
+                    >
+                        Comprar al Mayor
+                    </Link>
+                    <button
+                        onClick={() => document.querySelector('main')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all w-full sm:w-auto backdrop-blur-sm"
+                    >
+                        Ver Productos
+                    </button>
+                </div>
             </div>
 
             {/* Decorative Overlay */}
