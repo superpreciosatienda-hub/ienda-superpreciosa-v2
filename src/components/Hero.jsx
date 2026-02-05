@@ -27,7 +27,18 @@ export function Hero() {
                         Comprar al Mayor
                     </Link>
                     <button
-                        onClick={() => document.querySelector('main')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => {
+                            const element = document.getElementById('productos');
+                            if (element) {
+                                const offset = 80; // Compensación para el Navbar fijo
+                                const elementPosition = element.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                                window.scrollTo({
+                                    top: offsetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }}
                         className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all w-full sm:w-auto backdrop-blur-sm"
                     >
                         Ver Productos

@@ -9,7 +9,7 @@ export function Home({ addToCart }) {
         <>
             <Hero />
 
-            <main className="container mx-auto px-4 py-16">
+            <main id="productos" className="container mx-auto px-4 py-16">
                 {/* Coming Soon Section */}
                 <div className="mb-16 p-8 rounded-2xl bg-gradient-to-r from-gold-500/20 to-purple-500/20 border border-gold-500/30 text-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gold-400/5 blur-3xl group-hover:bg-gold-400/10 transition-colors duration-700"></div>

@@ -5,51 +5,51 @@
     "description": "Coloración profesional Kera-repair. Cobertura total y brillo intenso.",
     "price": 10.97,
     "category": "Tintes",
-    "image": "/images/tinte-9-00.png",
+    "image": "/images1/tinte-9-00.jpg",
     "colors": [
       {
         "name": "9/00 Rubio Muy Claro Intenso",
-        "image": "/images/tinte-9-00.png"
+        "image": "/images1/tinte-9-00.jpg"
       },
       {
         "name": "11/3 Rubio Ultra Dorado",
-        "image": "/images/tinte-11-3.png"
+        "image": "/images1/tinte-11-3.jpg"
       },
       {
         "name": "11/00 Ultra Rubio",
-        "image": "/images/tinte-11-00.png"
+        "image": "/images1/tinte-11-00.jpg"
       },
       {
         "name": "9/11 Rubio Ceniza Muy Claro Intenso",
-        "image": "/images/tinte-9-11.png"
+        "image": "/images1/tinte-9-11.jpj"
       },
       {
         "name": "11/31 Rubio Ceniza Ultra Dorado",
-        "image": "/images/tinte-11-31.png"
+        "image": "/images1/tinte-11-31.jpg"
       },
       {
         "name": "11/0 Rubio Más Claro",
-        "image": "/images/tinte-11-0.png"
+        "image": "/images1/tinte-11-0.jpg"
       },
       {
         "name": "9/81 Rubio Ceniza Muy Claro",
-        "image": "/images/tinte-9-81.png"
+        "image": "/images1/tinte-9-81.jpg"
       },
       {
         "name": "11/11 Rubio Ceniza Intenso más Claro",
-        "image": "/images/tinte-11-11.png"
+        "image": "/images1/tinte-11-11.jpg"
       },
       {
         "name": "11/1 Ultra Rubio Ceniza",
-        "image": "/images/tinte-11-1.png"
+        "image": "/images1/tinte-11-1.jpg"
       },
       {
         "name": "8/81 Rubio Claro Azul Ceniza",
-        "image": "/images/tinte-8-81.png"
+        "image": "/images1/tinte-8-81.jpg"
       },
       {
         "name": "9/1 Rubio Ceniza muy Claro",
-        "image": "/images/tinte-9-1.png"
+        "image": "/images1/tinte-9-1.jpg"
       }
     ]
   },
@@ -59,47 +59,47 @@
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
     "price": 13.97,
     "category": "Shampoos",
-    "image": "/images/shampoo-negro.png",
+    "image": "/images1/shampoo-negro.jpg",
     "colors": [
       {
         "name": "Black (Negro Intenso)",
-        "image": "/images/shampoo-negro.png"
+        "image": "/images1/shampoo-negro.jpg"
       },
       {
         "name": "Coffee (Castaño Medio)",
-        "image": "/images/shampoo-castano-medio.png"
+        "image": "/images1/shampoo-castano-medio.jpg"
       },
       {
         "name": "Dark Wine Red (Rojo Borgoña)",
-        "image": "/images/shampoo-rojo-borgona.png"
+        "image": "/images1/shampoo-rojo-borgona.jpg"
       },
       {
         "name": "Dark Brown (Castaño Oscuro)",
-        "image": "/images/shampoo-castano-oscuro.png"
+        "image": "/images1/shampoo-castano-oscuro.jpg"
       },
       {
         "name": "Golden Brown (Marrón Dorado)",
-        "image": "/images/shampoo-marron-dorado.png"
+        "image": "/images1/shampoo-marron-dorado.jpg"
       },
       {
         "name": "Wine Red (Rojo Vino)",
-        "image": "/images/shampoo-rojo-vino.png"
+        "image": "/images1/shampoo-rojo-vino.jpg"
       },
       {
         "name": "Chestnut Brown (Marrón Avellana)",
-        "image": "/images/shampoo-marron-avellana.png"
+        "image": "/images1/shampoo-marron-avellana.jpg"
       },
       {
         "name": "Dark Chocolate (Castaño Chocolate)",
-        "image": "/images/shampoo-castano-chocolate.png"
+        "image": "/images1/shampoo-castano-chocolate.jpg"
       },
       {
         "name": "Black Tea (Negro Castaño)",
-        "image": "/images/shampoo-negro-castano.png"
+        "image": "/images1/shampoo-negro-castano.jpg"
       },
       {
         "name": "Black Coconut (Negro Natural)",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images1/shampoo-negro-natural.jpg"
       }
     ]
   },
@@ -109,31 +109,31 @@
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Presentación práctica en caja de 10 sobres (30ml). Cobertura inmediata.",
     "price": 9.97,
     "category": "Shampoos",
-    "image": "/images/meidu-sachet-box.jpg",
+    "image": "/images1/meidu-sachet-box.jpg",
     "colors": [
       {
         "name": "Black (Negro)",
-        "image": "/images/meidu-sachet-box-black.jpg"
+        "image": "/images1/meidu-sachet-box-black.jpg"
       },
       {
         "name": "Dark Brown (Marrón Oscuro)",
-        "image": "/images/meidu-sachet-box-dark-brown.jpg"
+        "image": "/images1/meidu-sachet-box-dark-brown.jpg"
       },
       {
         "name": "Dark Wine Red (Vino Tinto Oscuro)",
-        "image": "/images/meidu-sachet-box-dark-wine-red.jpg"
+        "image": "/images1/meidu-sachet-box-dark-wine-red.jpg"
       },
       {
         "name": "Wine Red (Vino Tinto)",
-        "image": "/images/meidu-sachet-box-wine-red.jpg"
+        "image": "/images1/meidu-sachet-box-wine-red.jpg"
       },
       {
         "name": "Coffee (Café)",
-        "image": "/images/meidu-sachet-box-coffee.jpg"
+        "image": "/images1/meidu-sachet-box-coffee.jpg"
       },
       {
         "name": "Chestnut (Castaño)",
-        "image": "/images/meidu-sachet-box-chestnut.jpg"
+        "image": "/images1/meidu-sachet-box-chestnut.jpg"
       }
     ]
   },
@@ -143,47 +143,47 @@
     "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
     "price": 34.97,
     "category": "Combos",
-    "image": "/images/combo reparador.png",
+    "image": "/images1/combo reparador.jpg",
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro.png"
+        "image": "/images1/shampoo-negro.jpg"
       },
       {
         "name": "Kit Castaño Medio",
-        "image": "/images/shampoo-castano-medio.png"
+        "image": "/images1/shampoo-castano-medio.jpg"
       },
       {
         "name": "Kit Rojo Borgoña",
-        "image": "/images/shampoo-rojo-borgona.png"
+        "image": "/images1/shampoo-rojo-borgona.jpg"
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.png"
+        "image": "/images1/shampoo-castano-oscuro.jpg"
       },
       {
         "name": "Kit Marrón Dorado",
-        "image": "/images/shampoo-marron-dorado.png"
+        "image": "/images1/shampoo-marron-dorado.jpg"
       },
       {
         "name": "Kit Rojo Vino",
-        "image": "/images/shampoo-rojo-vino.png"
+        "image": "/images1/shampoo-rojo-vino.jpg"
       },
       {
         "name": "Kit Marrón Avellana",
-        "image": "/images/shampoo-marron-avellana.png"
+        "image": "/images1/shampoo-marron-avellana.jpg"
       },
       {
         "name": "Kit Castaño Chocolate",
-        "image": "/images/shampoo-castano-chocolate.png"
+        "image": "/images1/shampoo-castano-chocolate.jpg"
       },
       {
         "name": "Kit Negro Castaño",
-        "image": "/images/shampoo-negro-castano.png"
+        "image": "/images1/shampoo-negro-castano.jpg"
       },
       {
         "name": "Kit Negro Natural",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images1/shampoo-negro-natural.jpg"
       }
     ]
   },
@@ -193,47 +193,47 @@
     "description": "Máxima duración del color. Incluye: Shampoo Tinte (500ml) + Tratamiento Sellador de Color + Ampolla.",
     "price": 34.97,
     "category": "Combos",
-    "image": "/images/combo maxicolor.png",
+    "image": "/images1/combo maxicolor.jpg",
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro.png"
+        "image": "/images1/shampoo-negro.jpg"
       },
       {
         "name": "Kit Castaño Medio",
-        "image": "/images/shampoo-castano-medio.png"
+        "image": "/images1/shampoo-castano-medio.jpg"
       },
       {
         "name": "Kit Rojo Borgoña",
-        "image": "/images/shampoo-rojo-borgona.png"
+        "image": "/images1/shampoo-rojo-borgona.jpg"
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.png"
+        "image": "/images1/shampoo-castano-oscuro.jpg"
       },
       {
         "name": "Kit Marrón Dorado",
-        "image": "/images/shampoo-marron-dorado.png"
+        "image": "/images1/shampoo-marron-dorado.jpg"
       },
       {
         "name": "Kit Rojo Vino",
-        "image": "/images/shampoo-rojo-vino.png"
+        "image": "/images1/shampoo-rojo-vino.jpg"
       },
       {
         "name": "Kit Marrón Avellana",
-        "image": "/images/shampoo-marron-avellana.png"
+        "image": "/images1/shampoo-marron-avellana.jpg"
       },
       {
         "name": "Kit Castaño Chocolate",
-        "image": "/images/shampoo-castano-chocolate.png"
+        "image": "/images1/shampoo-castano-chocolate.jpg"
       },
       {
         "name": "Kit Negro Castaño",
-        "image": "/images/shampoo-negro-castano.png"
+        "image": "/images1/shampoo-negro-castano.jpg"
       },
       {
         "name": "Kit Negro Natural",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images1/shampoo-negro-natural.jpg"
       }
     ]
   },
@@ -243,62 +243,80 @@
     "description": "Suavidad extrema. Incluye: Shampoo Tinte (500ml) + Acondicionador Profundo + Sérum de Puntas.",
     "price": 34.97,
     "category": "Combos",
-    "image": "/images/combo suavizante.png",
+    "image": "/images1/combo suavizante.jpg",
     "colors": [
       {
         "name": "Kit Negro Intenso",
-        "image": "/images/shampoo-negro.png"
+        "image": "/images1/shampoo-negro.jpg"
       },
       {
         "name": "Kit Castaño Medio",
-        "image": "/images/shampoo-castano-medio.png"
+        "image": "/images1/shampoo-castano-medio.jpg"
       },
       {
         "name": "Kit Rojo Borgoña",
-        "image": "/images/shampoo-rojo-borgona.png"
+        "image": "/images1/shampoo-rojo-borgona.jpg"
       },
       {
         "name": "Kit Castaño Oscuro",
-        "image": "/images/shampoo-castano-oscuro.png"
+        "image": "/images1/shampoo-castano-oscuro.jpg"
       },
       {
         "name": "Kit Marrón Dorado",
-        "image": "/images/shampoo-marron-dorado.png"
+        "image": "/images1/shampoo-marron-dorado.jpg"
       },
       {
         "name": "Kit Rojo Vino",
-        "image": "/images/shampoo-rojo-vino.png"
+        "image": "/images1/shampoo-rojo-vino.jpg"
       },
       {
         "name": "Kit Marrón Avellana",
-        "image": "/images/shampoo-marron-avellana.png"
+        "image": "/images1/shampoo-marron-avellana.jpg"
       },
       {
         "name": "Kit Castaño Chocolate",
-        "image": "/images/shampoo-castano-chocolate.png"
+        "image": "/images1/shampoo-castano-chocolate.jpg"
       },
       {
         "name": "Kit Negro Castaño",
-        "image": "/images/shampoo-negro-castano.png"
+        "image": "/images1/shampoo-negro-castano.jpg"
       },
       {
         "name": "Kit Negro Natural",
-        "image": "/images/shampoo-negro-natural.png"
+        "image": "/images1/shampoo-negro-natural.jpg"
       }
     ]
   },
   {
     "id": 6,
-    "name": "Shampoo Tea Tree Oil (Control Caspa)",
-    "description": "LovelyCSM. Fórmula libre de sulfatos y parabenos. Ideal para cabello con caspa, teñido o maltratado. (500ml).",
+    "name": "Mascarilla Reparadora",
+    "description": "Mascarilla profesional para reparación intensiva y nutrición profunda. (500ml).",
     "price": 15.00,
     "category": "Tratamientos",
-    "image": "/images/shampoo anticaspa.png",
-    "colors": [
-      {
-        "name": "Control Caspa (Tea Tree)",
-        "image": "/images/shampoo anticaspa.png"
-      }
-    ]
+    "image": "/images1/Mascarilla -Reparadora.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Mascarilla Suavizante",
+    "description": "Mascarilla profesional para suavidad extrema y control de frizz. (500ml).",
+    "price": 15.00,
+    "category": "Tratamientos",
+    "image": "/images1/Mascarilla-Suavizante.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Mascarilla Maxicolor",
+    "description": "Tratamiento profesional para sellado del color y brillo radiante. (500ml).",
+    "price": 15.00,
+    "category": "Tratamientos",
+    "image": "/images1/Mascarilla-Maxicolor.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Protector Térmico",
+    "description": "Protección profesional contra el calor de herramientas térmicas. (250ml).",
+    "price": 8.00,
+    "category": "Tratamientos",
+    "image": "/images1/protector-termico.jpg"
   }
 ]
