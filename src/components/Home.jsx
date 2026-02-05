@@ -9,7 +9,7 @@ export function Home({ addToCart }) {
         <>
             <Hero />
 
-            <main id="productos" className="container mx-auto px-4 py-16">
+            <main className="container mx-auto px-4 py-16">
                 {/* Coming Soon Section */}
                 <div className="mb-16 p-8 rounded-2xl bg-gradient-to-r from-gold-500/20 to-purple-500/20 border border-gold-500/30 text-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gold-400/5 blur-3xl group-hover:bg-gold-400/10 transition-colors duration-700"></div>
@@ -37,7 +37,7 @@ export function Home({ addToCart }) {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between mb-8">
+                <div id="productos" className="flex items-center justify-between mb-8 scroll-mt-24">
                     <h2 className="text-3xl font-serif font-bold text-white">Nuestra Colección</h2>
                     <div className="h-1 bg-gold-500 w-24 rounded"></div>
                 </div>
