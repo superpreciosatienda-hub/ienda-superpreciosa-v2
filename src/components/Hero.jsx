@@ -20,12 +20,6 @@ export function Hero() {
                     Tu Cabello, Tu Corona. Descubre nuestra colección exclusiva para un brillo radiante.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Link
-                        to="/mayoristas"
-                        className="bg-gold-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] w-full sm:w-auto"
-                    >
-                        Comprar al Mayor
-                    </Link>
                     <button
                         onClick={() => {
                             const element = document.getElementById('productos');
@@ -39,10 +33,16 @@ export function Hero() {
                                 });
                             }
                         }}
-                        className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all w-full sm:w-auto backdrop-blur-sm"
+                        className="bg-gold-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-400 transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] w-full sm:w-auto"
                     >
                         Ver Productos
                     </button>
+                    <Link
+                        to="/mayoristas"
+                        className="border border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all w-full sm:w-auto backdrop-blur-sm"
+                    >
+                        Comprar al Mayor
+                    </Link>
                 </div>
             </div>
 

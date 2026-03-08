@@ -34,7 +34,10 @@ export function ProductCard({ product, onAddToCart }) {
   };
 
   return (
-    <div className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-gold-500/30 flex flex-col">
+    <div 
+      id={`product-${product.id}`}
+      className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-gold-500/30 flex flex-col scroll-mt-24"
+    >
       <div className="aspect-square overflow-hidden relative">
         <img
           src={currentImage}
