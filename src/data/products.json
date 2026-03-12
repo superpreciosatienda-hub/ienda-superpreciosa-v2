@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Tinte Permanente Augeas",
     "description": "Coloración profesional Kera-repair. Cobertura total y brillo intenso.",
-    "price": 10.97,
+    "price": 14.97,
     "category": "Tintes",
     "image": "/images1/tinte-9-00.jpg",
     "colors": [
@@ -57,7 +57,7 @@
     "id": 2,
     "name": "Shampoo Tinte 3 en 1 (Individual)",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Cobertura de canas inmediata.",
-    "price": 13.97,
+    "price": 16.97,
     "category": "Shampoos",
     "image": "/images1/shampoo-negro.jpg",
     "colors": [
@@ -107,7 +107,7 @@
     "id": "meidu-sachet-box",
     "name": "Shampoo Tinte 3 en 1 (Caja Sachets)",
     "description": "Shampoo, Tinte y Acondicionador en un solo paso. Presentación práctica en caja de 10 sobres (30ml). Cobertura inmediata.",
-    "price": 9.97,
+    "price": 12.97,
     "category": "Shampoos",
     "image": "/images1/meidu-sachet-box.jpg",
     "colors": [
@@ -141,7 +141,7 @@
     "id": 3,
     "name": "Combo Reparador",
     "description": "Rutina de reparación intensiva. Incluye: Shampoo Tinte (500ml) + Mascarilla de Argán + Protector Térmico.",
-    "price": 34.97,
+    "price": 42.97,
     "category": "Combos",
     "image": "/images1/combo reparador.jpg",
     "colors": [
@@ -191,7 +191,7 @@
     "id": 4,
     "name": "Combo Maxicolor",
     "description": "Máxima duración del color. Incluye: Shampoo Tinte (500ml) + Tratamiento Sellador de Color + Ampolla.",
-    "price": 34.97,
+    "price": 42.97,
     "category": "Combos",
     "image": "/images1/combo maxicolor.jpg",
     "colors": [
@@ -241,7 +241,7 @@
     "id": 5,
     "name": "Combo Suavizante",
     "description": "Suavidad extrema. Incluye: Shampoo Tinte (500ml) + Acondicionador Profundo + Sérum de Puntas.",
-    "price": 34.97,
+    "price": 42.97,
     "category": "Combos",
     "image": "/images1/combo suavizante.jpg",
     "colors": [
@@ -291,7 +291,7 @@
     "id": 6,
     "name": "Mascarilla Reparadora",
     "description": "Mascarilla profesional para reparación intensiva y nutrición profunda. (1000ml).",
-    "price": 15.00,
+    "price": 18.97,
     "category": "Tratamientos",
     "image": "/images1/Mascarilla -Reparadora.jpg"
   },
@@ -299,7 +299,7 @@
     "id": 7,
     "name": "Mascarilla Suavizante",
     "description": "Mascarilla profesional para suavidad extrema y control de frizz. (1000ml).",
-    "price": 15.00,
+    "price": 18.97,
     "category": "Tratamientos",
     "image": "/images1/Mascarilla-Suavizante.jpg"
   },
@@ -307,7 +307,7 @@
     "id": 8,
     "name": "Mascarilla Maxicolor",
     "description": "Tratamiento profesional para sellado del color y brillo radiante. (1000ml).",
-    "price": 15.00,
+    "price": 18.97,
     "category": "Tratamientos",
     "image": "/images1/Mascarilla-Maxicolor.jpg"
   },
@@ -315,7 +315,7 @@
     "id": 9,
     "name": "Protector Térmico",
     "description": "Protección profesional contra el calor de herramientas térmicas. (250ml).",
-    "price": 8.00,
+    "price": 11.00,
     "category": "Tratamientos",
     "image": "/images1/protector-termico.jpg"
   }
